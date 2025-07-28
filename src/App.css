@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+* {
+  user-select: none;
+}
+
+body {
+  background-color: #f1f4f8;
+}
+
+.primary, .active {
+  background-color: #fecf3e !important;
+}
