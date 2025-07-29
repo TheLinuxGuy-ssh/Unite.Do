@@ -4,6 +4,14 @@
   user-select: none;
 }
 
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-corner {
+    display: none;
+}
+
 body {
   background-color: #f1f4f8;
 }
@@ -18,4 +26,8 @@ body {
 
 .sidebar-welcome.collapsed {
   opacity: 0;
+}
+
+.do-sidebar:hover .sidebar-collapse-btn {
+  left: 22.15rem;
 }
