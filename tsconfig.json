@@ -1,4 +1,9 @@
 {
+    "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "types": ["vite/client"]
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

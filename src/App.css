@@ -11,3 +11,11 @@ body {
 .primary, .active {
   background-color: #fecf3e !important;
 }
+
+.do-sidebar.opened {
+  width: 25rem;
+}
+
+.sidebar-welcome.collapsed {
+  opacity: 0;
+}
