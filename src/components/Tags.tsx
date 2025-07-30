@@ -3,7 +3,9 @@
 const Tags = () => {
     return (
         <>
-        tags
+        <div className="do-section-box">
+            tags
+        </div>
         </>          
     )
 }

@@ -2,8 +2,8 @@
 
 const Projects = () => {
     return (
-        <div className="projects">
-            this is projects
+        <div className="do-section-box" data-aos="fade-right">
+            Projects
         </div>
     )
 }

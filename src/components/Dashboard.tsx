@@ -2,6 +2,7 @@ import { Description, Dialog, Disclosure, DisclosureButton, DisclosurePanel, Tex
 import { useEffect, useState } from 'react'
 import supabase from '../../utils/supabase';
 import { AnimatePresence, motion } from 'framer-motion'
+import AOS from 'aos';
 
 const Dashboard = () => {
     type Status = {
@@ -129,9 +130,10 @@ const Dashboard = () => {
         const signOut = async () => {
             await supabase.auth.signOut()
 }
-
+AOS.init();
     return (
         <>
+        <div className="do-section-box">
             <div className="flex flex-1 m-2">
                 <div className="dashboard-card bg-white overflow-y-scroll h-full rounded-4xl w-full py-8 px-6 h-full">
                     <div className="dashboard-card-header flex items-center">
@@ -302,6 +304,7 @@ const Dashboard = () => {
       </Dialog>
             )}
       </AnimatePresence>
+      </div>
         </>
     )
 }

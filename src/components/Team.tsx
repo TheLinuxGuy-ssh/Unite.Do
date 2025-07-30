@@ -2,6 +2,7 @@
 
 const Team = () => {
     return (
+        <div className="do-section-box">
         <div className="bg-white w-full rounded-4xl">
         <div className="team team-header bg-white p-5 rounded-t-4xl border-b-2 border-gray-300 w-full h-fit">
             <span className="title text-3xl font-semibold">Manage Your Team</span>
@@ -31,6 +32,7 @@ const Team = () => {
     </tr>
   </tbody>
 </table>
+        </div>
         </div>
         </div>
     )

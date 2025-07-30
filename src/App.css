@@ -36,3 +36,12 @@ body {
 .do-sidebar:hover .sidebar-collapse-btn {
   left: 22.15rem;
 }
+
+.do-section-box {
+  display: flex;
+  height: 83vh;
+  background-color: var(--color-gray-200);
+  width: 100%;
+  border-radius: var(--radius-4xl);
+  margin: calc(var(--spacing) * 4);
+}

@@ -34,13 +34,13 @@ const App = () => {
     <comp.Topbar session={session} />
     <div className="flex h-full">
     <comp.Sidebar />
-    <div className="flex dashboard bg-gray-200 w-full h-[83vh] rounded-4xl m-4 ml-0]">
-      <Routes>
+    <Routes>
         <Route path="/" Component={comp.Dashboard} />
         <Route path="/tasks" Component={comp.Tasks} />
+        <Route path="/tags" Component={comp.Tags} />
+        <Route path="/projects" Component={comp.Projects} />
         <Route path="/team" Component={comp.Team} />
       </Routes>
-    </div>
     </div>
     </>
   );
