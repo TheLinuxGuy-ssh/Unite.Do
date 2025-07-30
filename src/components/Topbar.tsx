@@ -54,14 +54,14 @@ const Topbar = ({ session }: TopbarProps) => {
               </span>
             </div>
           </MenuButton>
-          <MenuItems className="bg-white text-xl rounded-2xl mx-5 my-2 w-50" anchor="bottom">
+          <MenuItems className="bg-white text-xl rounded-2xl mx-5 my-2 w-50 border-3 border-gray-300" anchor="bottom">
         <MenuItem>
-          <a className="block p-3 px-10 data-focus:bg-blue-100" >
+          <a className="block p-3 px-10 data-focus:bg-yellow-200" >
             Settings
           </a>
         </MenuItem>
         <MenuItem>
-          <a className="block p-3 px-10 data-focus:bg-blue-100" onClick={() => signOut()}>
+          <a className="block p-3 px-10 data-focus:bg-yellow-200" onClick={() => signOut()}>
             Log Out
           </a>
         </MenuItem>
