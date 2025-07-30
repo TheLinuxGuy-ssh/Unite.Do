@@ -4,6 +4,11 @@
   user-select: none;
 }
 
+.auth {
+    background: url(../public/background.png);
+    background-size: cover;
+}
+
 ::-webkit-scrollbar-button {
     display: none;
 }

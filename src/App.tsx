@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
-import "./App.css"
+import { useState, useEffect } from "react";
+import "./App.css";
 import * as comp from "./components";
-import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared';
-import supabase from '../utils/supabase';
-import type { Session } from '@supabase/supabase-js';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
+import supabase from "../utils/supabase";
+import type { Session } from "@supabase/supabase-js";
 
 const App = () => {
   const [session, setSession] = useState<Session | null>(null);
@@ -19,25 +20,28 @@ const App = () => {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-
-
-
     return () => subscription.unsubscribe();
   }, []);
 
   if (!session) {
     return (
-      <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
-    );
+      <comp.Auth></comp.Auth>
+    )
   }
 
   return (
     <>
-      <comp.Topbar session={session} />
-      <div className="flex">
-        <comp.Sidebar />
-        <comp.Dashboard />
-      </div>
+    <comp.Topbar session={session} />
+    <div className="flex h-full">
+    <comp.Sidebar />
+    <div className="flex dashboard bg-gray-200 w-full h-[83vh] rounded-4xl m-4 ml-0]">
+      <Routes>
+        <Route path="/" Component={comp.Dashboard} />
+        <Route path="/tasks" Component={comp.Tasks} />
+        <Route path="/team" Component={comp.Team} />
+      </Routes>
+    </div>
+    </div>
     </>
   );
 };

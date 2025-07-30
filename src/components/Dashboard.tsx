@@ -126,11 +126,12 @@ const Dashboard = () => {
                 fetchOngoingItemCount();
             fetchCompletedItemCount();
         }
+        const signOut = async () => {
+            await supabase.auth.signOut()
+}
 
     return (
         <>
-        <div className="dashboard bg-gray-200 w-full h-fit p-1 rounded-4xl m-4 ml-0">
-        <div className="dashboard-content flex h-[84vh]">
             <div className="flex flex-1 m-2">
                 <div className="dashboard-card bg-white overflow-y-scroll h-full rounded-4xl w-full py-8 px-6 h-full">
                     <div className="dashboard-card-header flex items-center">
@@ -186,7 +187,7 @@ const Dashboard = () => {
                         <span className="dashboard-card-heading text-2xl">
                             Project Overview
                         </span>
-                        <div className="dashboard-add-btn border-2 border-gray-300 flex items-center justify-center ml-auto py-2.5 p-2 rounded-full duration-300 hover:border-[#fecf3e] hover:bg-[#fecf3e]">
+                        <div  className="dashboard-add-btn border-2 border-gray-300 flex items-center justify-center ml-auto py-2.5 p-2 rounded-full duration-300 hover:border-[#fecf3e] hover:bg-[#fecf3e]">
                             <i className="fa-regular fa-plus"></i>
                         </div>
                     </div>
@@ -221,9 +222,6 @@ const Dashboard = () => {
             <div className="flex flex-1">
                 
             </div>
-
-        </div>
-        </div>
         <AnimatePresence>
             {isOpen && (
          <Dialog open={isOpen} static onClose={() => setIsOpen(false)} className="relative z-50">

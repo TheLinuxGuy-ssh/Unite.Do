@@ -1,3 +1,7 @@
+export { default as Auth } from "./Auth"
 export { default as Topbar } from "./Topbar"
 export { default as Sidebar } from "./Sidebar"
 export { default as Dashboard } from "./Dashboard"
+export { default as Projects } from "./Projects"
+export { default as Tasks } from "./Tasks"
+export { default as Team } from "./Team"
