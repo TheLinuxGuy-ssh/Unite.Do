@@ -26,7 +26,7 @@ const Sidebar = () => {
                 <NavLink to="./tags" className="sidebar-item flex items-center mb-2 bg-white rounded-4xl py-4 px-3 duration-300 hover:bg-[#fecf3e]">
                     <i className="mx-2 fa-solid fa-tags"></i>
                     <span className="sidebar-item-title text-xl ml-4">Tags</span>
-                </div>
+                </NavLink>
                 <div className="sidebar-item flex items-center mb-2 bg-white rounded-4xl py-4 px-3 duration-300 hover:bg-[#fecf3e]">
                     <i className="mx-2 fa-solid fa-gear"></i>
                     <span className="sidebar-item-title text-xl ml-4">Settings</span>
