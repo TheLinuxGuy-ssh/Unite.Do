@@ -40,6 +40,7 @@ const App = () => {
         <Route path="/tags" Component={comp.Tags} />
         <Route path="/projects" Component={comp.Projects} />
         <Route path="/team" Component={comp.Team} />
+        <Route path="/settings" Component={comp.Settings} />
       </Routes>
     </div>
     </>

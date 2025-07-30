@@ -31,7 +31,7 @@ export default function Auth() {
 
   return (
     <div>
-      <section className="bg-white bg-white auth">
+      <section className="bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a
             href="#"
