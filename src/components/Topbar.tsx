@@ -35,9 +35,6 @@ const Topbar = ({ session }: TopbarProps) => {
           <div className="topbar-btn bg-white aspect-square mx-1 w-[3.5rem] rounded-full flex justify-center items-center duration-300 border border-transparent hover:border-[#fecf3e]">
             <i className="fa-regular fa-bell"></i>
           </div>
-          <div className="topbar-btn bg-white aspect-square mx-1 w-[3.5rem] rounded-full flex justify-center items-center duration-300 border border-transparent hover:border-[#fecf3e]">
-            <i className="fa-solid fa-gear"></i>
-          </div>
           <Menu>
           <MenuButton className="topbar-profile py-1 px-2 rounded-xl flex items-center mx-1 duration-300 hover:bg-[#fecf3e]">
             <img
@@ -54,12 +51,8 @@ const Topbar = ({ session }: TopbarProps) => {
               </span>
             </div>
           </MenuButton>
-          <MenuItems className="bg-white text-xl rounded-2xl mx-5 my-2 w-50 border-3 border-gray-300" anchor="bottom">
-        <MenuItem>
-          <a className="block p-3 px-10 data-focus:bg-yellow-200" >
-            Settings
-          </a>
-        </MenuItem>
+          <MenuItems anchor="bottom"
+        transition className="origin-top transition duration-100 outline-0 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white text-xl rounded-2xl mx-5 my-2 w-50 border-3 border-gray-300">
         <MenuItem>
           <a className="block p-3 px-10 data-focus:bg-yellow-200" onClick={() => signOut()}>
             Log Out
