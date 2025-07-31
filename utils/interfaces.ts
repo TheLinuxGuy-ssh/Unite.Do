@@ -1,5 +1,5 @@
  export type Tag = {
-    id: number;
+    id: string;
     name: string;
   }
 
@@ -9,7 +9,7 @@
   }
 
  export type Task = {
-    id: number;
+    id: string;
     title: string;
     description: string;
     status: string;
@@ -18,16 +18,17 @@
   };
 
  export type getTask = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   status: string;
+  due_date: string
   assigned_to: string;
   project: string;
   task_tags?: {
-    tag_id: number;
+    tag_id: string;
     tags: {
-      id: number;
+      id: string;
       name: string;
     };
   }[];

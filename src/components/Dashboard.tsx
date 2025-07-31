@@ -31,22 +31,22 @@ const Dashboard = () => {
   });
 
   const [tagData, setTagData] = useState<{ name: string }>({ name: '' });
-  const [projectData, setProjectData] = useState<{ name: string }>({ name: '' })
+  const [projectData, setProjectData] = useState<{ name: string }>({ name: '' });
 
   const fetchTasks = async () => {
     const { data, error } = await supabase
-  .from('tasks')
-  .select(`
-    *,
-    task_tags (
-      tag_id,
-      tags (
-        id,
-        name
-      )
-    )
-  `)
-  .order('created_at', { ascending: false });
+      .from('tasks')
+      .select(`
+        *,
+        task_tags (
+          tag_id,
+          tags (
+            id,
+            name
+          )
+        )
+      `)
+      .order('created_at', { ascending: false });
 
     if (error) {
       console.error(error);
@@ -121,6 +121,7 @@ const Dashboard = () => {
       [name]: name === 'due_date' ? new Date(value).toISOString() : value,
     }));
   };
+
   const handleTagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setTagData({ name: value });
@@ -137,7 +138,7 @@ const Dashboard = () => {
     }
   };
 
-  const removeTag = (id: number) => {
+  const removeTag = (id: string) => {
     setSelectedTags(selectedTags.filter((t) => t.id !== id));
   };
 
@@ -152,6 +153,12 @@ const Dashboard = () => {
     e.preventDefault();
     setTaskIsOpen(false);
 
+    // Validate project is non-empty string (UUID)
+    if (!taskData.project) {
+      console.error("Project must be selected.");
+      return;
+    }
+
     const { data, error } = await supabase
       .from('tasks')
       .insert([
@@ -160,7 +167,7 @@ const Dashboard = () => {
           description: taskData.description,
           due_date: taskData.due_date,
           status: taskData.status,
-          project: taskData.project
+          project: taskData.project   // UUID string
         },
       ])
       .select();
@@ -175,8 +182,8 @@ const Dashboard = () => {
 
       if (selectedTags.length > 0) {
         const taskTagsInsert = selectedTags.map((tag) => ({
-          task_id: newTask.id,
-          tag_id: tag.id,
+          task_id: newTask.id,  // string ID
+          tag_id: tag.id,       // number (tag id)
         }));
 
         const { error: joinError } = await supabase
@@ -229,7 +236,7 @@ const Dashboard = () => {
     }
   };
 
-  const handleDone = async (id: number) => {
+  const handleDone = async (id: string) => {
     const { error } = await supabase
       .from('tasks')
       .update({ status: 'Completed' })
@@ -244,7 +251,7 @@ const Dashboard = () => {
     await fetchCompletedItemCount();
   };
 
-  const handleTagDelete = async (id: number) => {
+  const handleTagDelete = async (id: string) => {
     const { error } = await supabase
       .from('tags')
       .delete()
@@ -264,68 +271,69 @@ const Dashboard = () => {
     <>
       <div className="do-section-box p-1">
         <div className="flex flex-3 flex-col m-2 p-5 bg-white rounded-4xl">
-  <div className="dashboard-card-header flex items-center border-b-3 border-gray-200">
-    <span className="dashboard-card-heading text-2xl text-gray-700 mt-5 mx-5 mb-3 font-semibold">
-      Projects
-    </span>
-    <div className="card-header-right ml-auto">
-      <button
-        className="bg-yellow-100 duration-100 border-2 border-yellow-300 hover:bg-[#fcef30] py-2 px-4 rounded-lg text-black"
-        onClick={() => setProjectIsOpen(true)}
-      >
-        New Project <i className="fa fa-plus"></i>
-      </button>
-    </div>
-  </div>
-  <div className="projects p-2 mt-4 grid grid-cols-3 gap-4">
-    {projects.map((projectItem) => (
-      <div key={projectItem.id} className="card w-full h-full rounded-4xl p-4 bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300">
-        <div className="project-title text-xl font-semibold mb-5"><i className='fa-regular fa-folder mr-2'></i>  {projectItem.name}</div>
-        {tasks.filter(task => task.project == projectItem.id).length != 0 ? (
-            <>
-            <div className='grid grid-cols-2 gap-2'>
-        {tasks
-          .filter(task => task.project === projectItem.id)
-          .map(task => (
-            <div
-              key={task.id}
-              className={`task border-2 w-full h-full rounded-2xl p-1 px-2 ${
-                task.status === "Ongoing"
-                  ? "bg-yellow-100 border-yellow-200"
-                  : "bg-green-100 border-green-200"
-              }`}
-            >
-              <div className="font-semibold">{task.title}</div>
-              {task.task_tags && task.task_tags.length > 0 && (
-                <div className="mt-2 p-1 flex flex-wrap gap-2">
-                  {task.task_tags.map(({ tag_id, tags }) => (
-                    <span
-                      key={tag_id}
-                      className="bg-yellow-200 border-2 border-yellow-300 px-2 py-1 rounded-2xl text-sm font-medium"
-                    >
-                      {tags.name}
-                    </span>
-                  ))}
-                </div>
-              )}
+          <div className="dashboard-card-header flex items-center border-b-3 border-gray-200">
+            <span className="dashboard-card-heading text-2xl text-gray-700 mt-5 mx-5 mb-3 font-semibold">
+              Projects
+            </span>
+            <div className="card-header-right ml-auto">
+              <button
+                className="bg-yellow-100 duration-100 border-2 border-yellow-300 hover:bg-[#fcef30] py-2 px-4 rounded-lg text-black"
+                onClick={() => setProjectIsOpen(true)}
+              >
+                New Project <i className="fa fa-plus"></i>
+              </button>
             </div>
-          ))}
           </div>
-          </>
-        ): (
-            <>
-            <div className="project-subtitle mt-5 text-lg font-semibold text-gray-600 my-2">
-                      No Task Assigned
+          <div className="projects p-2 mt-4 grid grid-cols-3 gap-4">
+            {projects.map((projectItem) => (
+              <div
+                key={projectItem.id}
+                className="card w-full h-full rounded-4xl p-4 bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
+              >
+                <div className="project-title text-xl font-semibold mb-5">
+                  <i className="fa-regular fa-folder mr-2"></i> {projectItem.name}
+                </div>
+                {tasks.filter(task => task.project === projectItem.id).length !== 0 ? (
+                  <div className="grid grid-cols-2 gap-2">
+                    {tasks
+                      .filter(task => task.project === projectItem.id)
+                      .map(task => (
+                        <div
+                          key={task.id}
+                          className={`task border-2 w-full h-full rounded-2xl p-1 px-2 ${
+                            task.status === "Ongoing"
+                              ? "bg-yellow-100 border-yellow-200"
+                              : "bg-green-100 border-green-200"
+                          }`}
+                        >
+                          <div className="font-semibold">{task.title}</div>
+                          {task.task_tags && task.task_tags.length > 0 && (
+                            <div className="mt-2 p-1 flex flex-wrap gap-2">
+                              {task.task_tags.map(({ tag_id, tags }) => (
+                                <span
+                                  key={tag_id}
+                                  className="bg-yellow-200 border-2 border-yellow-300 px-2 py-1 rounded-2xl text-sm font-medium"
+                                >
+                                  {tags.name}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                  </div>
+                ) : (
+                  <div className="project-subtitle mt-5 text-lg font-semibold text-gray-600 my-2">
+                    No Task Assigned
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
-            </>
-        )}
-      </div>
-    ))}
-  </div>
-</div>
 
         <div className="flex flex-1 m-2 flex-col overflow-hidden rounded-4xl">
-          <div className="dashboard-card mb-2 bg-white flex-1  overflow-hidden h-full rounded-4xl w-full py-5 px-6">
+          <div className="dashboard-card mb-2 bg-white flex-1 overflow-hidden h-full rounded-4xl w-full py-5 px-6">
             <div className="dashboard-card-header flex items-center border-b-3 border-gray-200">
               <span className="dashboard-card-heading text-2xl text-gray-700 mt-5 mx-5 mb-3 font-semibold">Tasks</span>
               <div
@@ -344,7 +352,7 @@ const Dashboard = () => {
                   OnGoing Tasks <i className="fa-solid fa-chevron-down text-right ml-auto"></i>
                 </DisclosureButton>
                 {tasks.map(
-                  (task) =>
+                  task =>
                     task.status === 'Ongoing' && (
                       <DisclosurePanel
                         key={task.id}
@@ -361,18 +369,17 @@ const Dashboard = () => {
                         </div>
                         <p className="text-gray-600 mb-5">{task.description}</p>
                         {task.task_tags && task.task_tags.length > 0 && (
-  <div className="mt-2 flex flex-wrap gap-2">
-    {task.task_tags.map(({ tag_id, tags }) => (
-      <span
-        key={tag_id}
-        className="bg-yellow-200 px-2 py-1 rounded-2xl text-sm font-medium"
-      >
-        {tags.name}
-      </span>
-    ))}
-  </div>
-)}
-
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {task.task_tags.map(({ tag_id, tags }) => (
+                              <span
+                                key={tag_id}
+                                className="bg-yellow-200 px-2 py-1 rounded-2xl text-sm font-medium"
+                              >
+                                {tags.name}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </DisclosurePanel>
                     )
                 )}
@@ -396,17 +403,17 @@ const Dashboard = () => {
                         </div>
                         <p className="text-gray-600">{task.description}</p>
                         {task.task_tags && task.task_tags.length > 0 && (
-  <div className="mt-2 flex flex-wrap gap-2">
-    {task.task_tags.map(({ tag_id, tags }) => (
-      <span
-        key={tag_id}
-        className="bg-green-300 px-2 py-1 rounded-2xl text-sm font-medium"
-      >
-        {tags.name}
-      </span>
-    ))}
-  </div>
-)}
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            {task.task_tags.map(({ tag_id, tags }) => (
+                              <span
+                                key={tag_id}
+                                className="bg-green-300 px-2 py-1 rounded-2xl text-sm font-medium"
+                              >
+                                {tags.name}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </DisclosurePanel>
                     )
                 )}
@@ -414,33 +421,32 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="dashboard-card mt-2 bg-white rounded-4xl flex-1 w-full py-3 px-6">
-                <div className="dashboard-card-header flex items-center">
-                  <span className="dashboard-card-heading text-2xl">Tags</span>
-                  <div
-                    onClick={() => setTagIsOpen(true)}
-                    className="dashboard-add-btn border-2 border-gray-300 flex items-center justify-center ml-auto py-2.5 p-2 rounded-full duration-300 hover:border-[#fecf3e] hover:bg-[#fecf3e]"
-                  >
-                    <i className="fa-regular fa-plus"></i>
+            <div className="dashboard-card-header flex items-center">
+              <span className="dashboard-card-heading text-2xl">Tags</span>
+              <div
+                onClick={() => setTagIsOpen(true)}
+                className="dashboard-add-btn border-2 border-gray-300 flex items-center justify-center ml-auto py-2.5 p-2 rounded-full duration-300 hover:border-[#fecf3e] hover:bg-[#fecf3e]"
+              >
+                <i className="fa-regular fa-plus"></i>
+              </div>
+            </div>
+            <div className="dashboard-card-content grid grid-cols-2">
+              {tags.map((tag) => (
+                <div
+                  key={tag.id}
+                  className="tag flex w-full p-3 shadow shadow-sm w-fit m-1.5 border-2 border-gray-200  py-2 text-lg rounded-4xl"
+                >
+                  <span className="tag-name w-full text-center">{tag.name}</span>
+                  <div className="" onClick={() => handleTagDelete(tag.id)}>
+                    <i className="fa fa-close text-right"></i>
                   </div>
                 </div>
-                <div className="dashboard-card-content grid grid-cols-2">
-                  {tags.map((tag) => (
-                    <div
-                      key={tag.id}
-                      className="tag flex w-full p-3 shadow shadow-sm w-fit m-1.5 border-2 border-gray-200  py-2 text-lg rounded-4xl"
-                    >
-                        <span className="tag-name w-full text-center">
-                      {tag.name}
-                      </span>
-                    <div className="" onClick={() => handleTagDelete(tag.id)}>
-                      <i className='fa fa-close text-right'></i>
-                      </div>
-                    </div>
-                  ))}
-              </div>
+              ))}
+            </div>
           </div>
-        </div>          
         </div>
+      </div>
+
       <AnimatePresence>
         {projectIsOpen && (
           <Dialog
@@ -471,7 +477,6 @@ const Dashboard = () => {
                         />
                       </Field>
                     </DialogTitle>
-
                     <div className="card-footer flex mt-8">
                       <div className="flex flex-1">
                         <Button
@@ -497,6 +502,7 @@ const Dashboard = () => {
           </Dialog>
         )}
       </AnimatePresence>
+
       <AnimatePresence>
         {tagIsOpen && (
           <Dialog
@@ -527,7 +533,6 @@ const Dashboard = () => {
                         />
                       </Field>
                     </DialogTitle>
-
                     <div className="card-footer flex mt-8">
                       <div className="flex flex-1">
                         <Button
@@ -553,6 +558,7 @@ const Dashboard = () => {
           </Dialog>
         )}
       </AnimatePresence>
+
       <AnimatePresence>
         {taskIsOpen && (
           <Dialog
@@ -583,7 +589,6 @@ const Dashboard = () => {
                         />
                       </Field>
                     </DialogTitle>
-
                     <div className="content my-2">
                       <Field className="w-50 mx-1">
                         <Label className="font-semibold text-xl my-2">Due Date</Label>
@@ -596,31 +601,31 @@ const Dashboard = () => {
                           value={taskData.due_date.split('T')[0]}
                         />
                       </Field>
-                    <div className="flex w-full">
-                      <Field className="w-60 mx-1">
-                        <Label className="font-semibold text-xl mr-4">Project</Label>
-                        <Select
-                          name="project"
-                          value={taskData.project}
-                          className="block mb-4 border-3 text-xl border-gray-100 py-3 px-4 mt-2 rounded-lg w-full data-focus:bg-gray-100"
-                          onChange={handleChange}
-                        >
-                          {projects.map((project) => (
-                            <option value={project.id}>{project.name}</option>
-                          ))}
-                        </Select>
-                      </Field>
-                      <Field className="ml-8 w-50 mx-1">
-                        <Label className="font-semibold text-xl mr-4">Assign</Label>
-                        <Select
-                          name="assign"
-                          className="block mb-4 border-3 text-xl border-gray-100 py-3 px-4 mt-2 rounded-lg w-full data-focus:bg-gray-100"
-                          onChange={handleChange}
-                          value={''}
-                        >
-                          <option>Select Member</option>
-                        </Select>
-                      </Field>
+                      <div className="flex w-full">
+                        <Field className="w-60 mx-1">
+                          <Label className="font-semibold text-xl mr-4">Project</Label>
+                          <Select
+                            name="project"
+                            value={taskData.project}
+                            className="block mb-4 border-3 text-xl border-gray-100 py-3 px-4 mt-2 rounded-lg w-full data-focus:bg-gray-100"
+                            onChange={handleChange}
+                          >
+                            {projects.map((project) => (
+                              <option key={project.id} value={project.id}>{project.name}</option>
+                            ))}
+                          </Select>
+                        </Field>
+                        <Field className="ml-8 w-50 mx-1">
+                          <Label className="font-semibold text-xl mr-4">Assign</Label>
+                          <Select
+                            name="assign"
+                            className="block mb-4 border-3 text-xl border-gray-100 py-3 px-4 mt-2 rounded-lg w-full data-focus:bg-gray-100"
+                            onChange={handleChange}
+                            value={''}
+                          >
+                            <option>Select Member</option>
+                          </Select>
+                        </Field>
                       </div>
                     </div>
                     <Field className="w-full mt-4">
@@ -668,7 +673,6 @@ const Dashboard = () => {
                         </ComboboxOptions>
                       </Combobox>
                     </Field>
-
                     <Field className="mt-4">
                       <Label className="text-xl font-semibold">Description</Label>
                       <Textarea
@@ -679,7 +683,6 @@ const Dashboard = () => {
                         value={taskData.description}
                       />
                     </Field>
-
                     <div className="card-footer flex mt-8">
                       <div className="flex flex-1">
                         <Button
