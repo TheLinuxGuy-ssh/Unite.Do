@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 * {
-  user-select: none;
+  user-select: none !important;
 }
 
 .auth {
@@ -21,7 +21,8 @@ body {
 }
 
 .primary, .active {
-  background-color: #fecf3e !important;
+  background-color: var(--color-yellow-200) !important;
+  border: 2px solid var(--color-yellow-400);
 }
 
 .do-sidebar.opened {

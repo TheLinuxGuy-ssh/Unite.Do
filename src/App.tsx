@@ -32,13 +32,14 @@ const App = () => {
   return (
     <>
     <comp.Topbar session={session} />
-    <div className="flex h-full">
+    <div className="flex  h-full">
     <comp.Sidebar />
     <Routes>
         <Route path="/" Component={comp.Dashboard} />
         <Route path="/tasks" Component={comp.Tasks} />
         <Route path="/tags" Component={comp.Tags} />
         <Route path="/projects" Component={comp.Projects} />
+        <Route path="/project/:projectId" Component={comp.Project} />
         <Route path="/team" Component={comp.Team} />
         <Route path="/settings" Component={comp.Settings} />
       </Routes>

@@ -7,55 +7,22 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import AOS from 'aos';
 import supabase from '../../utils/supabase';
+import type * as type from "../../utils/interfaces";
 
 const Dashboard = () => {
-  interface Tag {
-    id: number;
-    name: string;
-  }
-
-  type Project = {
-    id: string,
-    name: string
-  }
-
-  type Task = {
-    id: number;
-    title: string;
-    description: string;
-    status: string;
-    due_date: string;
-    project: string;
-  };
-
-  type getTask = {
-  id: number;
-  title: string;
-  description: string;
-  status: string;
-  assigned_to: string;
-  project: string;
-  task_tags?: {
-    tag_id: number;
-    tags: {
-      id: number;
-      name: string;
-    };
-  }[];
-};
 
   const [taskIsOpen, setTaskIsOpen] = useState(false);
   const [tagIsOpen, setTagIsOpen] = useState(false);
   const [projectIsOpen, setProjectIsOpen] = useState(false);
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<type.Tag[]>([]);
   const [tagQuery, setTagQuery] = useState('');
-  const [tasks, setTasks] = useState<getTask[]>([]);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [tags, setTags] = useState<Tag[]>([]);
+  const [tasks, setTasks] = useState<type.getTask[]>([]);
+  const [projects, setProjects] = useState<type.Project[]>([]);
+  const [tags, setTags] = useState<type.Tag[]>([]);
   const [ongoingItemCount, setOngoingItemCount] = useState<number | null>(null);
   const [completedItemCount, setCompletedItemCount] = useState<number | null>(null);
 
-  const [taskData, setTaskData] = useState<Omit<Task, 'id'>>({
+  const [taskData, setTaskData] = useState<Omit<type.Task, 'id'>>({
     title: '',
     description: '',
     status: 'Ongoing',
@@ -164,7 +131,7 @@ const Dashboard = () => {
     setProjectData({ name: value });
   };
 
-  const addTag = (tag: Tag | null) => {
+  const addTag = (tag: type.Tag | null) => {
     if (tag && !selectedTags.some((t) => t.id === tag.id)) {
       setSelectedTags([...selectedTags, tag]);
     }
@@ -316,12 +283,13 @@ const Dashboard = () => {
         <div className="project-title text-xl font-semibold mb-5"><i className='fa-regular fa-folder mr-2'></i>  {projectItem.name}</div>
         {tasks.filter(task => task.project == projectItem.id).length != 0 ? (
             <>
+            <div className='grid grid-cols-2 gap-2'>
         {tasks
           .filter(task => task.project === projectItem.id)
           .map(task => (
             <div
               key={task.id}
-              className={`task border-2 rounded-2xl w-fit p-1 px-2 ${
+              className={`task border-2 w-full h-full rounded-2xl p-1 px-2 ${
                 task.status === "Ongoing"
                   ? "bg-yellow-100 border-yellow-200"
                   : "bg-green-100 border-green-200"
@@ -329,11 +297,11 @@ const Dashboard = () => {
             >
               <div className="font-semibold">{task.title}</div>
               {task.task_tags && task.task_tags.length > 0 && (
-                <div className="mt-2 flex flex-wrap gap-2">
+                <div className="mt-2 p-1 flex flex-wrap gap-2">
                   {task.task_tags.map(({ tag_id, tags }) => (
                     <span
                       key={tag_id}
-                      className="bg-yellow-200 px-2 py-1 rounded-2xl text-sm font-medium"
+                      className="bg-yellow-200 border-2 border-yellow-300 px-2 py-1 rounded-2xl text-sm font-medium"
                     >
                       {tags.name}
                     </span>
@@ -342,6 +310,7 @@ const Dashboard = () => {
               )}
             </div>
           ))}
+          </div>
           </>
         ): (
             <>
@@ -454,14 +423,16 @@ const Dashboard = () => {
                     <i className="fa-regular fa-plus"></i>
                   </div>
                 </div>
-                <div className="dashboard-card-content f">
+                <div className="dashboard-card-content grid grid-cols-2">
                   {tags.map((tag) => (
                     <div
                       key={tag.id}
-                      className="tag flex bg-yellow-100 w-fit float-left m-1.5 border-2 border-gray-200 px-15 py-2 text-lg rounded-4xl"
+                      className="tag flex w-full p-3 shadow shadow-sm w-fit m-1.5 border-2 border-gray-200  py-2 text-lg rounded-4xl"
                     >
+                        <span className="tag-name w-full text-center">
                       {tag.name}
-                    <div className="text-right" onClick={() => handleTagDelete(tag.id)}>
+                      </span>
+                    <div className="" onClick={() => handleTagDelete(tag.id)}>
                       <i className='fa fa-close text-right'></i>
                       </div>
                     </div>
@@ -671,7 +642,7 @@ const Dashboard = () => {
                           </span>
                         ))}
                       </div>
-                      <Combobox<Tag | null> value={null} onChange={addTag}>
+                      <Combobox<type.Tag | null> value={null} onChange={addTag}>
                         <ComboboxInput
                           displayValue={() => ''}
                           onChange={(e) => setTagQuery(e.target.value)}
