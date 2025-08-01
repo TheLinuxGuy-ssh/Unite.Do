@@ -12,12 +12,12 @@ const Topbar = ({ session }: TopbarProps) => {
     };
     return (
         <>
-            <div className="topbar w-full flex py-8 px-5">
+            <div className="topbar w-full flex py-4 pb-0 items-center px-5">
                 <div className="topbar-do flex-1">
-                    {/* <img src="Work.do" alt="" /> */}
+                    <img src="Work.do" alt="" />
                     <span className="text-4xl font-bold">TaskWhirl</span>
                 </div>
-                <div className="topbar-days flex flex-1 mx-auto">
+                <div className="topbar-days flex items-center flex-1 mx-auto">
                     <div className="topbar-days-btn flex items-center justify-center mx-1 border-1 py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] select-none hover:cursor-pointer">
                         Today
                     </div>
@@ -36,7 +36,7 @@ const Topbar = ({ session }: TopbarProps) => {
                         <i className="fa-regular fa-bell"></i>
                     </div>
                     <Menu>
-                        <MenuButton className="topbar-profile border-2 border-gray-200 bg-yellow-200 py-1 px-2 rounded-xl flex items-center mx-1 duration-300 hover:bg-[#fecf3e]">
+                        <MenuButton className="topbar-profile border-2 border-yellow-300 outline-0 bg-yellow-200 py-1 px-2 rounded-xl flex items-center mx-1 duration-300 hover:bg-[#fecf3e]">
                             <img
                                 className="h-[2.35rem] mr-2 rounded-full"
                                 src="./profile.webp"

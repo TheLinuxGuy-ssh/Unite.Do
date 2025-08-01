@@ -292,7 +292,7 @@ const Dashboard = () => {
     return (
         <>
             <div className="do-section-box p-1">
-                <div className="flex flex-3 flex-col m-2 p-5 bg-white rounded-4xl">
+                <div className="flex flex-3 flex-col m-2 p-5 bg-white border-2 border-gray-100 rounded-4xl">
                     <div className="dashboard-card-header flex items-center border-b-3 border-gray-200">
                         <span className="dashboard-card-heading text-2xl text-gray-700 mt-5 mx-5 mb-3 font-semibold">
                             Projects
@@ -311,12 +311,13 @@ const Dashboard = () => {
                             <NavLink
                                 to={`/project/${projectItem.id}`}
                                 key={projectItem.id}
-                                className="card w-full h-full rounded-4xl p-4 bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
+                                className="card w-full overflow-hidden h-fit rounded-4xl  bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
                             >
-                                <div className="project-title text-xl font-semibold mb-5">
+                                <div className="project-title p-4 pb-0 text-xl font-semibold mb-5">
                                     <i className="fa-regular fa-folder mr-2"></i>{" "}
                                     {projectItem.name}
                                 </div>
+                                <div className="project-content m-2 p-4 rounded-4xl bg-gray-100 h-[100%]">
                                 {tasks.filter(
                                     (task) => task.project === projectItem.id
                                 ).length !== 0 ? (
@@ -330,7 +331,7 @@ const Dashboard = () => {
                                             .map((task) => (
                                                 <div
                                                     key={task.id}
-                                                    className={`task border-2 w-full h-full rounded-2xl p-1 px-2 ${
+                                                    className={`task border-2 w-full h-full dots-bg rounded-2xl p-1 px-2 ${
                                                         task.status ===
                                                         "Ongoing"
                                                             ? "bg-yellow-100 border-yellow-200"
@@ -340,10 +341,11 @@ const Dashboard = () => {
                                                     <div className="font-semibold">
                                                         {task.title}
                                                     </div>
+                                                    <div className="mt-2 p-1 flex flex-wrap gap-2">
                                                     {task.task_tags &&
                                                         task.task_tags.length >
                                                             0 && (
-                                                            <div className="mt-2 p-1 flex flex-wrap gap-2">
+                                                              <>
                                                                 {task.task_tags.map(
                                                                     ({
                                                                         tag_id,
@@ -360,9 +362,10 @@ const Dashboard = () => {
                                                                             }
                                                                         </span>
                                                                     )
-                                                                )}
-                                                            </div>
+                                                                  )}
+                                                                  </>
                                                         )}
+                                                            </div>
                                                 </div>
                                             ))}
                                     </div>
@@ -371,6 +374,7 @@ const Dashboard = () => {
                                         No Task Assigned
                                     </div>
                                 )}
+                                </div>
                             </NavLink>
                         ))}
                     </div>
@@ -403,7 +407,7 @@ const Dashboard = () => {
                                         task.status === "Ongoing" && (
                                             <DisclosurePanel
                                                 key={task.id}
-                                                className="card w-full border-3 border-yellow-100 bg-yellow-100/50 mt-4 p-5 h-fit h-30 rounded-4xl origin-top transition duration-200 ease-out"
+                                                className="card dots-bg w-full border-3 border-yellow-100 bg-yellow-100/50 mt-4 p-5 h-fit h-30 rounded-4xl origin-top transition duration-200 ease-out"
                                             >
                                                 <div className="card-header flex">
                                                     <h1 className="title text-xl font-semibold">
@@ -462,7 +466,7 @@ const Dashboard = () => {
                                         task.status === "Completed" && (
                                             <DisclosurePanel
                                                 key={task.id}
-                                                className="card w-full border-3 border-green-100 bg-green-100/50 mt-4 p-6 h-fit rounded-4xl"
+                                                className="card dots-bg w-full border-3 border-green-100 bg-green-100/50 mt-4 p-6 h-fit rounded-4xl"
                                             >
                                                 <div className="card-header flex items-center">
                                                     <h1 className="title text-2xl">

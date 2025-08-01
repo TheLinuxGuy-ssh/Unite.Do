@@ -268,7 +268,7 @@ const Project = () => {
                     </h1>
                 </div>
                 <div
-                    className="project-tasks p-6 grid grid-cols-4 grid-rows-3 bg-white"
+                    className="project-tasks p-6 grid grid-cols-4 gap-4 grid-rows-3 bg-white"
                     onClick={() => setOpenEdit(false)}
                 >
                     {tasks.length === 0 ? (

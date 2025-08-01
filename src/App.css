@@ -2,6 +2,7 @@
 
 * {
   user-select: none !important;
+  font-family: "Roboto";
 }
 
 .auth {
@@ -16,8 +17,14 @@
     display: none;
 }
 
+html {
+    background-color: #fff;
+opacity: 0.8;
+background-image: radial-gradient(#adadad 0.6px, #fff 0.8px);
+background-size: 18px 18px;
+}
+
 body {
-  background-color: #f1f4f8;
 }
 
 .primary, .active {
@@ -39,9 +46,18 @@ body {
 
 .do-section-box {
   display: flex;
-  height: 83vh;
+  height: 88vh;
   background-color: var(--color-gray-200);
   width: 100%;
   border-radius: var(--radius-4xl);
   margin: calc(var(--spacing) * 4);
+}
+
+.project-content {
+  box-shadow: 0 0 10px -5px rgba(0, 0, 0, 0.651);
+}
+
+.dots-bg {
+  background-image: radial-gradient(#adadad77 0.6px, transparent 0.8px);
+background-size: 8px 8px;
 }

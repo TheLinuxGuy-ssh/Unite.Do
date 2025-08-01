@@ -1,3 +1,4 @@
+export { default as LiquidGlass } from "./LiquidGlass"
 export { default as Auth } from "./Auth";
 export { default as Topbar } from "./Topbar";
 export { default as Sidebar } from "./Sidebar";

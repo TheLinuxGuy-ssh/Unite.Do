@@ -286,14 +286,14 @@ const Projects = () => {
                 className="do-section-box bg-[#fff!important]"
                 data-aos="fade-right"
             >
-                <div className="projects w-full px-4 mt-4 grid grid-cols-3 grid-rows-3 gap-4">
+                <div className="projects w-full s mt-4 grid grid-cols-3 grid-rows-3 gap-4">
                     {projects.map((projectItem) => (
                         <NavLink
                             to={`/project/${projectItem.id}`}
                             key={projectItem.id}
-                            className="card w-full  rounded-4xl p-4 bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
+                            className="card w-full h-fit rounded-4xl bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
                         >
-                            <div className="project-title text-xl font-semibold mb-5">
+                            <div className="project-title p-4 pb-0 text-xl font-semibold mb-5">
                                 <i className="fa-regular fa-folder mr-2"></i>{" "}
                                 {projectItem.name}
                             </div>
@@ -301,7 +301,7 @@ const Projects = () => {
                                 (task) => task.project == projectItem.id
                             ).length != 0 ? (
                                 <>
-                                    <div className="grid grid-cols-2 gap-2">
+                                    <div className="project-content rounded-4xl m-2 p-4 grid grid-cols-2 gap-2">
                                         {tasks
                                             .filter(
                                                 (task) =>
@@ -311,7 +311,7 @@ const Projects = () => {
                                             .map((task) => (
                                                 <div
                                                     key={task.id}
-                                                    className={`task border-2 w-full h-full rounded-2xl p-1 px-2 ${
+                                                    className={`task border-2 dots-bg w-full h-full rounded-2xl p-1 px-2 ${
                                                         task.status ===
                                                         "Ongoing"
                                                             ? "bg-yellow-100 border-yellow-200"
