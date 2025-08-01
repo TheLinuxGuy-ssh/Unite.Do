@@ -175,8 +175,6 @@ const Dashboard = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setTaskIsOpen(false);
-
-        // Validate project is non-empty string (UUID)
         if (!taskData.project) {
             console.error("Project must be selected.");
             return;
@@ -190,7 +188,7 @@ const Dashboard = () => {
                     description: taskData.description,
                     due_date: taskData.due_date,
                     status: taskData.status,
-                    project: taskData.project, // UUID string
+                    project: taskData.project,
                 },
             ])
             .select();
@@ -205,8 +203,8 @@ const Dashboard = () => {
 
             if (selectedTags.length > 0) {
                 const taskTagsInsert = selectedTags.map((tag) => ({
-                    task_id: newTask.id, // string ID
-                    tag_id: tag.id, // number (tag id)
+                    task_id: newTask.id,
+                    tag_id: tag.id,
                 }));
 
                 const { error: joinError } = await supabase
@@ -355,7 +353,7 @@ const Dashboard = () => {
                                                                             key={
                                                                                 tag_id
                                                                             }
-                                                                            className="bg-yellow-200 border-2 border-yellow-300 px-2 py-1 rounded-2xl text-sm font-medium"
+                                                                            className="bg-blue-200 border-2 border-yellow-300 px-2 py-1 rounded-2xl text-sm font-medium"
                                                                         >
                                                                             {
                                                                                 tags.name
