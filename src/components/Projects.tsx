@@ -3,56 +3,23 @@ import supabase from "../../utils/supabase"
 import { NavLink } from "react-router-dom";
 import AOS from "aos"
 import { Checkbox } from "@headlessui/react";
+import * as type from "../../utils/interfaces";
 
 const Projects = () => {
-  interface Tag {
-    id: number;
-    name: string;
-  }
-
-  type Project = {
-    id: string,
-    name: string
-  }
-
-  type Task = {
-    id: number;
-    title: string;
-    description: string;
-    status: string;
-    due_date: string;
-    project: string;
-  };
-
-  type getTask = {
-  id: number;
-  title: string;
-  description: string;
-  status: string;
-  assigned_to: string;
-  project: string;
-  task_tags?: {
-    tag_id: number;
-    tags: {
-      id: number;
-      name: string;
-    };
-  }[];
-};
 
   const [taskIsOpen, setTaskIsOpen] = useState(false);
   const [tagIsOpen, setTagIsOpen] = useState(false);
   const [projectIsOpen, setProjectIsOpen] = useState(false);
   const [editIsOpen, setEditIsOpen] = useState(false)
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<type.Tag[]>([]);
   const [tagQuery, setTagQuery] = useState('');
-  const [tasks, setTasks] = useState<getTask[]>([]);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [tags, setTags] = useState<Tag[]>([]);
+  const [tasks, setTasks] = useState<type. getTask[]>([]);
+  const [projects, setProjects] = useState<type.Project[]>([]);
+  const [tags, setTags] = useState<type.Tag[]>([]);
   const [ongoingItemCount, setOngoingItemCount] = useState<number | null>(null);
   const [completedItemCount, setCompletedItemCount] = useState<number | null>(null);
 
-  const [taskData, setTaskData] = useState<Omit<Task, 'id'>>({
+  const [taskData, setTaskData] = useState<Omit<type.Task, 'id'>>({
     title: '',
     description: '',
     status: 'Ongoing',
@@ -161,13 +128,13 @@ const Projects = () => {
     setProjectData({ name: value });
   };
 
-  const addTag = (tag: Tag | null) => {
+  const addTag = (tag: type.Tag | null) => {
     if (tag && !selectedTags.some((t) => t.id === tag.id)) {
       setSelectedTags([...selectedTags, tag]);
     }
   };
 
-  const removeTag = (id: number) => {
+  const removeTag = (id: string) => {
     setSelectedTags(selectedTags.filter((t) => t.id !== id));
   };
 
@@ -300,7 +267,11 @@ const Projects = () => {
 //   }
 
 
+  const [openEdit, setOpenEdit] = useState(false);
+  const [editTask, setEditTask] = useState<type.getTask | null>(null);
 
+  const [editFormData, setEditFormData] = useState<Partial<type.getTask>>({});
+  
    return (
         <>
         <div className="do-section-box bg-[#fff!important]" data-aos="fade-right">

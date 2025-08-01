@@ -1,111 +1,132 @@
-// src/Auth.tsx
 import { useState } from "react";
-import { Switch } from "@headlessui/react"
+import { Switch } from "@headlessui/react";
 import supabase from "../../utils/supabase";
 
 export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [signInLoading, setSignInLoading] = useState(false);
-  const [signUpLoading, setSignUpLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(true);
+  const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSignIn = async () => {
-    setSignInLoading(true);
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
     setError(null);
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) setError(error.message);
-    setSignInLoading(false);
+    setLoading(false);
   };
 
-  const handleSignUp = async () => {
-    setSignUpLoading(true);
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
     setError(null);
     const { error } = await supabase.auth.signUp({ email, password });
     if (error) setError(error.message);
-    setSignUpLoading(false);
+    else setError("Success! Please check your email to verify your account.");
+    setLoading(false);
   };
 
   return (
-    <div>
-      <section className="bg-gray-900 h-screen">
-        <div className="flex flex-col items-center h-fit justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a
-            href="#"
-            className="flex justify-center items-center mb-6 text-4xl font-semibold text-gray-900 dark:text-white"
-          >
-            {/* <img className="w-8 h-8 mr-2" src="" alt="logo" /> */}
-            Unite.do
-          </a>
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Sign in to your account
-              </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Your email
-                  </label>
-                  <input
-                    type="email"
-        placeholder="User@email.com"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        disabled={signInLoading || signUpLoading}
-                    className="bg-gray-50 border border-gray-300 outline-0 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        disabled={signInLoading || signUpLoading}
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 outline-0 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <Switch
-      className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition data-checked:bg-blue-600"
-    >
-      <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-checked:translate-x-6" />
-    </Switch>
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label className="text-gray-500 dark:text-gray-300">
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex">
-                <button
-                onClick={handleSignIn} disabled={signInLoading || signUpLoading}
-                  className="w-full flex-1 mr-2 text-white bg-yellow-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                >
-                  {signInLoading ? "Loading..." : "Sign In"}
-                </button>
-                <button
-                  className="w-full flex-1 ml-2 bg-white text-black hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                >{signUpLoading ? "Loading..." : "Sign Up"}</button>
-              </div>
-              </form>
-            </div>
+    <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="p-8">
+          <div className="mb-6 text-center">
+            <a href="#" className="text-yellow-500 text-3xl font-extrabold">
+              TaskWhirl
+            </a>
+            <h2 className="mt-2 text-2xl font-semibold text-gray-900 dark:text-white">
+              {isSignIn ? "Sign in to your account" : "Create your account"}
+            </h2>
+            {error && (
+              <p className={`mt-2 text-sm ${error.startsWith("Success") ? "text-green-500" : "text-red-500"}`} role="alert">
+                {error}
+              </p>
+            )}
           </div>
+
+          <form onSubmit={isSignIn ? handleSignIn : handleSignUp} className="space-y-6">
+            <div>
+              <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                Email address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="user@example.com"
+                value={email}
+                disabled={loading}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                value={password}
+                disabled={loading}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <label className="flex items-center cursor-pointer">
+                <Switch
+                  checked={rememberMe}
+                  onChange={setRememberMe}
+                  className={`${
+                    rememberMe ? "bg-yellow-500" : "bg-gray-200"
+                  } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400`}
+                >
+                  <span
+                    className={`${
+                      rememberMe ? "translate-x-6" : "translate-x-1"
+                    } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
+                  />
+                </Switch>
+                <span className="ml-3 text-sm text-gray-900 dark:text-gray-300 select-none">
+                  Remember me
+                </span>
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3 px-4 rounded-lg bg-yellow-500 text-white font-semibold hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-1"
+            >
+              {loading ? "Loading..." : isSignIn ? "Sign In" : "Sign Up"}
+            </button>
+          </form>
+
+          <p className="mt-6 text-center text-sm text-gray-400">
+            {isSignIn ? "Don't have an account? " : "Already have an account? "}
+            <button
+              type="button"
+              onClick={() => {
+                setIsSignIn(!isSignIn);
+                setError(null);
+              }}
+              className="font-semibold text-yellow-400 hover:text-yellow-300 focus:outline-none"
+            >
+              {isSignIn ? "Sign up" : "Sign in"}
+            </button>
+          </p>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

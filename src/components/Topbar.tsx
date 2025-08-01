@@ -15,7 +15,7 @@ const Topbar = ({ session }: TopbarProps) => {
       <div className="topbar w-full flex py-8 px-5">
         <div className="topbar-do flex-1">
           {/* <img src="Work.do" alt="" /> */}
-          <span className="text-4xl font-bold">Do.</span>
+          <span className="text-4xl font-bold">TaskWhirl</span>
         </div>
         <div className="topbar-days flex flex-1 mx-auto">
           <div className="topbar-days-btn flex items-center justify-center mx-1 border-1 py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] select-none hover:cursor-pointer">

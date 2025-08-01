@@ -247,11 +247,21 @@ const Tasks = () => {
                 {tasks &&
                   tasks.length > 0 &&
                   tasks.map((p) => (
-                    <option key={p.id} value={p.project}>
+                    <option key={p.id} value={p.project} {...p.status == editFormData.status ? <>selected</> : null}>
                       {p.project}
                     </option>
                   ))}
               </select>
+            </Field>
+            <Field>
+                <select 
+                name=""
+                value={editFormData.status || ""}
+                onChange={handleEditInputChange}
+                >
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="Ongoing">Ongoing</option>
+                </select>
             </Field>
 
             <Field>

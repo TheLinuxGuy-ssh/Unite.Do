@@ -1,9 +1,10 @@
+import { useEffect, useState } from 'react';
 import { 
   Combobox, ComboboxInput, ComboboxOption, ComboboxOptions,
   Dialog, DialogPanel, DialogTitle, Button, Field, Input, Label, Textarea, Select,
   Disclosure, DisclosureButton, DisclosurePanel
 } from '@headlessui/react';
-import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import AOS from 'aos';
 import supabase from '../../utils/supabase';
@@ -286,7 +287,8 @@ const Dashboard = () => {
           </div>
           <div className="projects p-2 mt-4 grid grid-cols-3 gap-4">
             {projects.map((projectItem) => (
-              <div
+              <NavLink
+              to={`/project/${projectItem.id}`}
                 key={projectItem.id}
                 className="card w-full h-full rounded-4xl p-4 bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
               >
@@ -327,7 +329,7 @@ const Dashboard = () => {
                     No Task Assigned
                   </div>
                 )}
-              </div>
+              </NavLink>
             ))}
           </div>
         </div>
@@ -359,7 +361,7 @@ const Dashboard = () => {
                         className="card w-full border-3 border-yellow-100 bg-yellow-100/50 mt-4 p-5 h-fit h-30 rounded-4xl origin-top transition duration-200 ease-out"
                       >
                         <div className="card-header flex">
-                          <h1 className="title text-xl font-semibold">{task.title}</h1>
+                          <h1 className="title text-xl font-semibold"><i className='fa-solid fa-list'></i> {task.title}</h1>
                           <button
                             onClick={() => handleDone(task.id)}
                             className="py-4 px-6 flex items-center justify-center border-2 duration-100 hover:bg-yellow-300 border-gray-500 rounded-4xl relative ml-auto w-10"
@@ -398,8 +400,8 @@ const Dashboard = () => {
                         key={task.id}
                         className="card w-full border-3 border-green-100 bg-green-100/50 mt-4 p-6 h-fit rounded-4xl"
                       >
-                        <div className="card-header flex">
-                          <h1 className="title text-2xl">{task.title}</h1>
+                        <div className="card-header flex items-center">
+                          <h1 className="title text-2xl"><i className='fa-solid fa-list mr-2'></i> {task.title}</h1>
                         </div>
                         <p className="text-gray-600">{task.description}</p>
                         {task.task_tags && task.task_tags.length > 0 && (
