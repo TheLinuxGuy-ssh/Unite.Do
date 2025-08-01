@@ -74,7 +74,7 @@ export default function Auth() {
                             <span className="text-white font-semibold text-lg text-center">
                             Test Credentials
                             </span>
-                            <div className="creds my-3 text-white">
+                            <div className="creds my-3 hidden text-white">
                                 <b>Email:</b> demo@tlg.com<br/>
                                 <b>Password:</b> tlg@1234
                             </div>
