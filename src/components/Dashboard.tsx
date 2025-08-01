@@ -353,7 +353,7 @@ const Dashboard = () => {
                                                                             key={
                                                                                 tag_id
                                                                             }
-                                                                            className="bg-blue-200 border-2 border-yellow-300 px-2 py-1 rounded-2xl text-sm font-medium"
+                                                                            className="bg-blue-200 border-2 border-blue-300 px-2 py-1 rounded-2xl text-sm font-medium"
                                                                         >
                                                                             {
                                                                                 tags.name
