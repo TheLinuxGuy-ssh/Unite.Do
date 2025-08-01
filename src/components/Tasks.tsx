@@ -139,28 +139,28 @@ const Tasks = () => {
                         Manage Your Tasks
                     </span>
                 </div>
-                <div className="content grid grid-cols-3 gap-2 my-6 px-4 bg-white w-full">
+                <div className="content grid grid-cols-3 gap-4 my-6 px-4 bg-white w-full">
                     {tasks
                         .filter((task) => task.status === "Ongoing")
                         .map((task) => (
                             <div
                                 key={task.id}
-                                className="flex flex-col p-3 hover:bg-gray-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
+                                className="flex flex-col duration-100 hover:bg-yellow-200 bg-yellow-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleTaskEdit(task.id);
                                 }}
                             >
-                                <div className="flex pt-2">
-                                    <div className="flex font-semibold items-center text-xl">
+                                <div className="flex flex-1 pt-2 items-center">
+                                    <div className="para text-xl mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
+                                    <div className="flex font-semibold p-4 items-center text-xl ">
                                         <span className="ml-2 mr-5">
                                             <i className="fa-solid fa-list" />
                                         </span>
                                         {task.title}
-                                    </div>
-                                    <div className="ml-5">
+                                    <div className="ml-5 flex flex-1 items-center">
                                         <div
-                                            className={`w-fit py-2 px-4 rounded-lg font-bold text-white ${
+                                            className={`w-fit py-2 px-4 rounded-lg dots-bg font-bold text-white ${
                                                 (task.status === "Ongoing" &&
                                                     "bg-yellow-400") ||
                                                 (task.status === "Assigned" &&
@@ -171,13 +171,18 @@ const Tasks = () => {
                                         >
                                             {task.status}
                                         </div>
+                                        <div className="profile flex flex-1 justify-end">
+                                            <img src="./profile.webp" className="w-10 rounded-full" alt="profile.webp" />
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div className="task-desc mx-2 my-2">
+                                    {task.description}
                                     </div>
                                 </div>
-                                <div className="text-gray-500 font-bold ml-3">
-                                    Due Date: {task.due_date?.split("T")[0]}
                                 </div>
-                                <div className="para text-xl w-full h-full bg-gray-100 rounded-4xl mt-4 py-3 px-4 border-2 border-gray-300">
-                                    {task.description}
+                                <div className="text-center py-5 text-gray-800 font-bold text-lg ml-5">
+                                    Due Date: {task.due_date?.split("T")[0]}
                                 </div>
                             </div>
                         ))}
@@ -186,22 +191,22 @@ const Tasks = () => {
                         .map((task) => (
                             <div
                                 key={task.id}
-                                className="flex flex-col p-3 hover:bg-gray-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
+                                className="flex flex-col duration-100 hover:bg-green-200 bg-green-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleTaskEdit(task.id);
                                 }}
                             >
-                                <div className="flex pt-2">
-                                    <div className="flex font-semibold items-center text-xl">
+                                <div className="flex flex-1 pt-2 items-center">
+                                    <div className="para text-xl mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
+                                    <div className="flex font-semibold p-4 items-center text-xl ">
                                         <span className="ml-2 mr-5">
                                             <i className="fa-solid fa-list" />
                                         </span>
                                         {task.title}
-                                    </div>
-                                    <div className="ml-5">
+                                    <div className="ml-5 flex flex-1 items-center">
                                         <div
-                                            className={`w-fit py-2 px-4 rounded-lg font-bold text-white ${
+                                            className={`w-fit py-2 px-4 rounded-lg dots-bg font-bold text-white ${
                                                 (task.status === "Ongoing" &&
                                                     "bg-yellow-400") ||
                                                 (task.status === "Assigned" &&
@@ -212,13 +217,18 @@ const Tasks = () => {
                                         >
                                             {task.status}
                                         </div>
+                                        <div className="profile flex flex-1 justify-end">
+                                            <img src="./profile.webp" className="w-10 rounded-full" alt="profile.webp" />
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div className="task-desc mx-2 my-2">
+                                    {task.description}
                                     </div>
                                 </div>
-                                <div className="text-gray-500 font-bold ml-3">
-                                    Due Date: {task.due_date?.split("T")[0]}
                                 </div>
-                                <div className="para text-xl w-full h-full bg-gray-100 rounded-4xl mt-4 py-3 px-4 border-2 border-gray-300">
-                                    {task.description}
+                                <div className="text-center py-5 text-gray-800 font-bold text-lg ml-5">
+                                    Due Date: {task.due_date?.split("T")[0]}
                                 </div>
                             </div>
                         ))}

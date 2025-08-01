@@ -29,6 +29,7 @@ const Dashboard = () => {
     const [projectIsOpen, setProjectIsOpen] = useState(false);
     const [selectedTags, setSelectedTags] = useState<type.Tag[]>([]);
     const [tagQuery, setTagQuery] = useState("");
+    const [users, setUsers] = useState<type.User[]>([]);
     const [tasks, setTasks] = useState<type.getTask[]>([]);
     const [projects, setProjects] = useState<type.Project[]>([]);
     const [tags, setTags] = useState<type.Tag[]>([]);
@@ -45,6 +46,7 @@ const Dashboard = () => {
         status: "Ongoing",
         due_date: new Date().toISOString(),
         project: "",
+        assigned_to: ""
     });
 
     const [tagData, setTagData] = useState<{ name: string }>({ name: "" });
@@ -88,6 +90,18 @@ const Dashboard = () => {
         }
     };
 
+    const fetchUsers = async () => {
+        const { data, error } = await supabase
+            .from("profiles")
+            .select("*")
+            .order("created_at", { ascending: false });
+        if (error) {
+            console.error(error);
+        } else {
+            setUsers(data || []);
+        }
+    };
+
     const fetchProjects = async () => {
         const { data, error } = await supabase
             .from("projects")
@@ -126,6 +140,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         AOS.init();
+        fetchUsers();
         fetchTasks();
         fetchTags();
         fetchProjects();
@@ -226,6 +241,7 @@ const Dashboard = () => {
                 status: "Ongoing",
                 due_date: new Date().toISOString(),
                 project: "",
+                assigned_to: ""
             });
             setSelectedTags([]);
         }
@@ -758,11 +774,14 @@ const Dashboard = () => {
                                                         name="assign"
                                                         className="block mb-4 border-3 text-xl border-gray-100 py-3 px-4 mt-2 rounded-lg w-full data-focus:bg-gray-100"
                                                         onChange={handleChange}
-                                                        value={""}
+                                                        value={taskData.assigned_to}
                                                     >
                                                         <option>
                                                             Select Member
                                                         </option>
+                                                        {users.map((user) => (
+                                                            <option value={user.id}>{user.name}</option>
+                                                        ))}
                                                     </Select>
                                                 </Field>
                                             </div>

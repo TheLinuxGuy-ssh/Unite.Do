@@ -1,27 +1,27 @@
 import { useState } from "react";
 import supabase from "../../utils/supabase";
+import * as type from "../../utils/interfaces"
+
 
 const Team = () => {
-  type Team = {
-    id: string;
-  }
 
-const [user, setUser] = useState<{ name: string }>({
-        name: "",
-    });
-      const fetchUser = async () => {
+const [users, setUsers] = useState<type.User[]>([]);
+          const fetchUsers = async () => {
         const { data, error } = await supabase
-            .from("teams_members")
+            .from("profiles")
             .select("*")
             .order("created_at", { ascending: false });
         if (error) {
             console.error(error);
         } else {
-            // setProject(data || []);
+            setUsers(data || []);
         }
     };
+    useState(() => {
+        fetchUsers();
+    })
     return (
-        <div className="do-sidection-box">
+        <div className="do-section-box">
             <div className="bg-white w-full rounded-4xl">
                 <div className="team team-header bg-white p-5 rounded-t-4xl border-b-2 border-gray-300 w-full h-fit">
                     <span className="title text-3xl font-semibold">
@@ -33,32 +33,24 @@ const [user, setUser] = useState<{ name: string }>({
                         <thead className="">
                             <tr>
                                 <th className="border-b text-left p-5 border-gray-300">
-                                    Name
+                                    ID
                                 </th>
                                 <th className="border-b text-left p-5 border-gray-300">
-                                  Team ID
+                                  User Name
                                 </th>
                                 <th className="border-b text-left p-5 border-gray-300">
-                                    Member UUID
-                                </th>
-                                <th className="border-b text-left p-5 border-gray-300">
-                                    Role
+                                    User Email
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className="p-5">Indiana</td>
-                                <td className="p-5">Indianapolis</td>
-                            </tr>
-                            <tr>
-                                <td className="p-5">Ohio</td>
-                                <td className="p-5">Columbus</td>
-                            </tr>
-                            <tr>
-                                <td className="p-5">Michigan</td>
-                                <td className="p-5">Detroit</td>
-                            </tr>
+                            {users.map((user) => (
+                                <tr>
+                                    <td className="border-b text-left p-5 border-gray-300">{user.id}</td>
+                                    <td className="border-b text-left p-5 border-gray-300">{user.name}</td>
+                                    <td className="border-b text-left p-5 border-gray-300">{user.email}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -66,5 +58,4 @@ const [user, setUser] = useState<{ name: string }>({
         </div>
     );
 };
-
 export default Team;

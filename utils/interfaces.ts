@@ -3,6 +3,12 @@ export type Tag = {
     name: string;
 };
 
+export type User = {
+  id: string;
+  email: string | null;
+  name: string | null;
+};
+
 export type Project = {
     id: string;
     name: string;
@@ -15,6 +21,7 @@ export type Task = {
     status: string;
     due_date: string;
     project: string;
+    assigned_to: string;
 };
 
 export type getTask = {

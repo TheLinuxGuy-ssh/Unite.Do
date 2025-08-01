@@ -28,6 +28,7 @@ const Projects = () => {
         status: "Ongoing",
         due_date: new Date().toISOString(),
         project: "",
+        assigned_to: "",
     });
 
     const [tagData, setTagData] = useState<{ name: string }>({ name: "" });
@@ -204,6 +205,7 @@ const Projects = () => {
                 status: "Ongoing",
                 due_date: new Date().toISOString(),
                 project: "",
+                assigned_to: "",
             });
             setSelectedTags([]);
         }
