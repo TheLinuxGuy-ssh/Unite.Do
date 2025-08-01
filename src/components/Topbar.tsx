@@ -26,9 +26,18 @@ const Topbar = ({ session }: TopbarProps) => {
                     </a>
                 </ div>
                 <div className="topbar-utils flex flex-1 justify-end h-auto">
-                    <div className="topbar-btn bg-white aspect-square mx-1 w-[3.5rem] rounded-full flex justify-center items-center duration-300 border border-transparent hover:border-[#fecf3e]">
+                    <Menu>
+                    <MenuButton className="topbar-btn bg-white aspect-square mx-1 w-[3.5rem] rounded-full flex justify-center items-center duration-300 border border-transparent hover:border-[#fecf3e]">
                         <i className="fa-regular fa-bell"></i>
-                    </div>
+                    </MenuButton>
+                    <MenuItems
+                            anchor="bottom"
+                            transition
+                            className="origin-top flex justify-center w-90 h-90 mt-3 items-center transition duration-100 outline-0 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white text-xl rounded-2xl mx-5 my-2 w-50 border-3 border-gray-300"
+                        >
+                           No Notications
+                        </MenuItems>
+                    </Menu>
                     <Menu>
                         <MenuButton className="topbar-profile border-2 border-yellow-300 outline-0 bg-yellow-200 py-1 px-2 rounded-xl flex items-center mx-1 duration-300 hover:bg-[#fecf3e]">
                             <img
