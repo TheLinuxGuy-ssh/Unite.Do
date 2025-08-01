@@ -13,24 +13,18 @@ const Topbar = ({ session }: TopbarProps) => {
     return (
         <>
             <div className="topbar w-full flex py-4 pb-0 items-center px-5">
-                <div className="topbar-do flex-1">
-                    <img src="Work.do" alt="" />
+                <div className="topbar-do flex flex-1">
+                    <img src="./logo.png" className="h-10 mr-4" alt="" />
                     <span className="text-4xl font-bold">TaskWhirl</span>
                 </div>
-                <div className="topbar-days flex items-center flex-1 mx-auto">
-                    <div className="topbar-days-btn flex items-center justify-center mx-1 border-1 py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] select-none hover:cursor-pointer">
-                        Today
-                    </div>
-                    <div className="topbar-days-btn flex items-center justify-center mx-1 border-1 py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] select-none hover:cursor-pointer">
-                        This Week
-                    </div>
-                    <div className="topbar-days-btn flex items-center justify-center mx-1 border-1 py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] select-none hover:cursor-pointer">
-                        This Month
-                    </div>
-                    <div className="topbar-days-btn flex items-center justify-center mx-1 border-1 py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] select-none hover:cursor-pointer">
-                        Reports
-                    </div>
-                </div>
+                <div className="topbar-days flex items-center justify-center flex-1 mx-auto">
+                    <a target="_blank" href="https://github.com/TheLinuxGuy-ssh/Unite.Do" className="topbar-days-btn bg-black text-white flex items-center justify-center mx-1 border-1 py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] hover:text-black select-none hover:cursor-pointer">
+                       <i className="fa-brands fa-github mr-4"></i> GitHub
+                    </a>
+                    <a target="_blank" href="https://unite-do.vercel.app" className="topbar-days-btn flex items-center justify-center mx-1 border-1 border-yellow-400 bg-[#fcef30] py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] select-none hover:cursor-pointer">
+                        Demo Link
+                    </a>
+                </ div>
                 <div className="topbar-utils flex flex-1 justify-end h-auto">
                     <div className="topbar-btn bg-white aspect-square mx-1 w-[3.5rem] rounded-full flex justify-center items-center duration-300 border border-transparent hover:border-[#fecf3e]">
                         <i className="fa-regular fa-bell"></i>

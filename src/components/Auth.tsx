@@ -36,14 +36,15 @@ export default function Auth() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
-            <div className="max-w-md w-full bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className="min-h-screen dots-log flex flex-col items-center justify-center px-4">
+            <div className="max-w-md w-full mt-5 bg-white rounded-4xl shadow-lg dark:bg-gray-900/90">
                 <div className="p-8">
                     <div className="mb-6 text-center">
                         <a
                             href="#"
-                            className="text-yellow-500 text-3xl font-extrabold"
+                            className="text-yellow-500 text-3xl flex items-center justify-center font-extrabold"
                         >
+                                    <img src="./logo.png" className="w-15 mr-5" alt="" />
                             TaskWhirl
                         </a>
                         <h2 className="mt-2 text-2xl font-semibold text-gray-900 dark:text-white">
