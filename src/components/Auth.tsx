@@ -71,7 +71,7 @@ export default function Auth() {
                         className="space-y-6"
                     >
                         <div className="text-center">
-                            <span className="text-white font-semibold text-lg text-center">
+                            <span className="text-white hidden font-semibold text-lg text-center">
                             Test Credentials
                             </span>
                             <div className="creds my-3 hidden text-white">
