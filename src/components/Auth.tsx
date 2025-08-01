@@ -70,7 +70,14 @@ export default function Auth() {
                         onSubmit={isSignIn ? handleSignIn : handleSignUp}
                         className="space-y-6"
                     >
-                        <div>
+                        <div className="text-center">
+                            <span className="text-white font-semibold text-lg text-center">
+                            Test Credentials
+                            </span>
+                            <div className="creds my-3 text-white">
+                                <b>Email:</b> demo@tlg.com<br/>
+                                <b>Password:</b> tlg@1234
+                            </div>
                             <label
                                 htmlFor="email"
                                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -148,21 +155,6 @@ export default function Auth() {
                         </button>
                     </form>
 
-                    <p className="mt-6 text-center text-sm text-gray-400">
-                        {isSignIn
-                            ? "Don't have an account? "
-                            : "Already have an account? "}
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setIsSignIn(!isSignIn);
-                                setError(null);
-                            }}
-                            className="font-semibold text-yellow-400 hover:text-yellow-300 focus:outline-none"
-                        >
-                            {isSignIn ? "Sign up" : "Sign in"}
-                        </button>
-                    </p>
                 </div>
             </div>
         </div>
