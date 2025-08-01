@@ -612,6 +612,7 @@ const Dashboard = () => {
                             className="block mb-4 border-3 text-xl border-gray-100 py-3 px-4 mt-2 rounded-lg w-full data-focus:bg-gray-100"
                             onChange={handleChange}
                           >
+                            <option value="" selected>Select Project</option>
                             {projects.map((project) => (
                               <option key={project.id} value={project.id}>{project.name}</option>
                             ))}
