@@ -254,15 +254,16 @@ const Tasks = () => {
               </select>
             </Field>
             <Field>
-                <select 
-                name=""
-                value={editFormData.status || ""}
-                onChange={handleEditInputChange}
-                >
-                    <option value="Ongoing">Ongoing</option>
-                    <option value="Ongoing">Ongoing</option>
-                </select>
-            </Field>
+                      <select 
+                      name="status"
+                      className="py-1 px-2 border-1 border-gray-300 rounded-lg"
+                      value={editFormData.status || ""}
+                      onChange={handleEditInputChange}
+                      >
+                          <option value="Ongoing" {...editFormData.status == "Ongoing" ? <>selected</> : null}>Ongoing</option>
+                          <option value="Completed" {...editFormData.status == "Completed" ? <>selected</> : null}>Completed</option>
+                      </select>
+                  </Field>
 
             <Field>
               <Textarea

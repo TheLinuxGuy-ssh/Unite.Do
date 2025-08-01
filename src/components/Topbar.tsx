@@ -36,7 +36,7 @@ const Topbar = ({ session }: TopbarProps) => {
             <i className="fa-regular fa-bell"></i>
           </div>
           <Menu>
-          <MenuButton className="topbar-profile py-1 px-2 rounded-xl flex items-center mx-1 duration-300 hover:bg-[#fecf3e]">
+          <MenuButton className="topbar-profile border-2 border-gray-200 bg-yellow-200 py-1 px-2 rounded-xl flex items-center mx-1 duration-300 hover:bg-[#fecf3e]">
             <img
               className="h-[2.35rem] mr-2 rounded-full"
               src="./profile.webp"

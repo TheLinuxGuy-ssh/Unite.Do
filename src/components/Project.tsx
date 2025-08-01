@@ -214,11 +214,11 @@ const Project = () => {
 
   return (
     <div className="do-section-box flex w-full mx-auto">
-      <div className="box flex-col bg-white flex-7 rounded-4xl">
+      <div className="box flex-col bg-white flex-7 rounded-4xl w-full">
       <div className="project-header bg-white p-8 px-8 rounded-t-4xl">
       <h1 className="text-4xl font-bold mb-4"><span className="text-lg">Projects</span> / {project.name}</h1>
       </div>
-    <div className="project-tasks p-6 grid grid-cols-4 grid-rows-3 bg-white">
+    <div className="project-tasks p-6 grid grid-cols-4 grid-rows-3 bg-white" onClick={() => setOpenEdit(false)}>
       {tasks.length === 0 ? (
         <>
         <div className="container">
