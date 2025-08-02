@@ -75,8 +75,8 @@ export default function Auth() {
                             Test Credentials
                             </span>
                             <div className="creds my-3 text-white">
-                                <b>Email:</b> demo@tlg.com<br/>
-                                <b>Password:</b> tlg@1234
+                                <b>Email:</b> microsoft@taskwhirl.com<br/>
+                                <b>Password:</b> 1122
                             </div>
                             <label
                                 htmlFor="email"
