@@ -318,7 +318,7 @@ const Project = () => {
                                             {task.status}
                                         </div>
                                         <div className="profile flex flex-1 justify-end">
-                                            <img src="./profile.webp" className="w-10 rounded-full" alt="profile.webp" />
+                                            <img src="../../public/profile.webp" className="w-10 rounded-full" alt="profile.webp" />
                                         </div>
                                     </div>
                                     </div>
