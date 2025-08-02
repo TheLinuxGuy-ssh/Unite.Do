@@ -184,8 +184,8 @@ const Dashboard = () => {
         tagQuery === ""
             ? tags
             : tags.filter((tag) =>
-                  tag.name.toLowerCase().includes(tagQuery.toLowerCase())
-              );
+                tag.name.toLowerCase().includes(tagQuery.toLowerCase())
+            );
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -334,62 +334,61 @@ const Dashboard = () => {
                                     {projectItem.name}
                                 </div>
                                 <div className="project-content m-2 p-4 rounded-4xl bg-gray-100 h-[100%]">
-                                {tasks.filter(
-                                    (task) => task.project === projectItem.id
-                                ).length !== 0 ? (
-                                    <div className="grid grid-cols-2 gap-2">
-                                        {tasks
-                                            .filter(
-                                                (task) =>
-                                                    task.project ===
-                                                    projectItem.id
-                                            )
-                                            .map((task) => (
-                                                <div
-                                                    key={task.id}
-                                                    className={`task border-2 w-full h-full dots-bg rounded-2xl p-1 px-2 ${
-                                                        task.status ===
-                                                        "Ongoing"
-                                                            ? "bg-yellow-100 border-yellow-200"
-                                                            : "bg-green-100 border-green-200"
-                                                    }`}
-                                                >
-                                                    <div className="font-semibold">
-                                                        {task.title}
+                                    {tasks.filter(
+                                        (task) => task.project === projectItem.id
+                                    ).length !== 0 ? (
+                                        <div className="grid grid-cols-2 gap-2">
+                                            {tasks
+                                                .filter(
+                                                    (task) =>
+                                                        task.project ===
+                                                        projectItem.id
+                                                )
+                                                .map((task) => (
+                                                    <div
+                                                        key={task.id}
+                                                        className={`task border-2 w-full h-full dots-bg rounded-2xl p-1 px-2 ${task.status ===
+                                                                "Ongoing"
+                                                                ? "bg-yellow-100 border-yellow-200"
+                                                                : "bg-green-100 border-green-200"
+                                                            }`}
+                                                    >
+                                                        <div className="font-semibold">
+                                                            {task.title}
+                                                        </div>
+                                                        <div className="mt-2 p-1 flex flex-wrap gap-2">
+                                                            {task.task_tags &&
+                                                                task.task_tags.length >
+                                                                0 && (
+                                                                    <>
+                                                                        {task.task_tags.map(
+                                                                            ({
+                                                                                tag_id,
+                                                                                tags,
+                                                                            }) => (
+                                                                                <span
+                                                                                    key={
+                                                                                        tag_id
+                                                                                    }
+                                                                                    className="bg-blue-200 border-2 border-blue-300 px-2 py-1 rounded-2xl text-sm font-medium"
+                                                                                >
+                                                                                    {
+                                                                                        tags.name
+                                                                                    }
+                                                                                </span>
+                                                                            )
+                                                                        )}
+                                                                    </>
+                                                                )}
+                                                        </div>
                                                     </div>
-                                                    <div className="mt-2 p-1 flex flex-wrap gap-2">
-                                                    {task.task_tags &&
-                                                        task.task_tags.length >
-                                                            0 && (
-                                                              <>
-                                                                {task.task_tags.map(
-                                                                    ({
-                                                                        tag_id,
-                                                                        tags,
-                                                                    }) => (
-                                                                        <span
-                                                                            key={
-                                                                                tag_id
-                                                                            }
-                                                                            className="bg-blue-200 border-2 border-blue-300 px-2 py-1 rounded-2xl text-sm font-medium"
-                                                                        >
-                                                                            {
-                                                                                tags.name
-                                                                            }
-                                                                        </span>
-                                                                    )
-                                                                  )}
-                                                                  </>
-                                                        )}
-                                                            </div>
-                                                </div>
-                                            ))}
-                                    </div>
-                                ) : (
-                                    <div className="project-subtitle mt-5 text-lg font-semibold text-gray-600 my-2">
-                                        No Task Assigned
-                                    </div>
-                                )}
+                                                ))}
+                                        </div>
+                                    ) : (
+                                        <div className="project-subtitle mt-5 text-lg font-semibold text-gray-600 my-2">
+                                            No Task Assigned
+                                        </div>
+                                    )}
                                 </div>
                             </NavLink>
                         ))}
@@ -444,7 +443,7 @@ const Dashboard = () => {
                                                 </p>
                                                 {task.task_tags &&
                                                     task.task_tags.length >
-                                                        0 && (
+                                                    0 && (
                                                         <div className="mt-2 flex flex-wrap gap-2">
                                                             {task.task_tags.map(
                                                                 ({
@@ -495,7 +494,7 @@ const Dashboard = () => {
                                                 </p>
                                                 {task.task_tags &&
                                                     task.task_tags.length >
-                                                        0 && (
+                                                    0 && (
                                                         <div className="mt-2 flex flex-wrap gap-2">
                                                             {task.task_tags.map(
                                                                 ({
@@ -842,10 +841,9 @@ const Dashboard = () => {
                                                                 className={({
                                                                     active,
                                                                 }) =>
-                                                                    `cursor-pointer select-none px-4 py-2 ${
-                                                                        active
-                                                                            ? "bg-yellow-200"
-                                                                            : ""
+                                                                    `cursor-pointer select-none px-4 py-2 ${active
+                                                                        ? "bg-yellow-200"
+                                                                        : ""
                                                                     }`
                                                                 }
                                                             >

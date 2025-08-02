@@ -5,8 +5,8 @@ import * as type from "../../utils/interfaces"
 
 const Team = () => {
 
-const [users, setUsers] = useState<type.User[]>([]);
-          const fetchUsers = async () => {
+    const [users, setUsers] = useState<type.User[]>([]);
+    const fetchUsers = async () => {
         const { data, error } = await supabase
             .from("profiles")
             .select("*")
@@ -36,7 +36,7 @@ const [users, setUsers] = useState<type.User[]>([]);
                                     ID
                                 </th>
                                 <th className="border-b text-left p-5 border-gray-300">
-                                  User Name
+                                    User Name
                                 </th>
                                 <th className="border-b text-left p-5 border-gray-300">
                                     User Email

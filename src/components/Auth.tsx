@@ -44,7 +44,7 @@ export default function Auth() {
                             href="#"
                             className="text-yellow-500 text-3xl flex items-center justify-center font-extrabold"
                         >
-                                    <img src="./logo.png" className="w-15 mr-5" alt="" />
+                            <img src="./logo.png" className="w-15 mr-5" alt="" />
                             TaskWhirl
                         </a>
                         <h2 className="mt-2 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -54,11 +54,10 @@ export default function Auth() {
                         </h2>
                         {error && (
                             <p
-                                className={`mt-2 text-sm ${
-                                    error.startsWith("Success")
+                                className={`mt-2 text-sm ${error.startsWith("Success")
                                         ? "text-green-500"
                                         : "text-red-500"
-                                }`}
+                                    }`}
                                 role="alert"
                             >
                                 {error}
@@ -72,10 +71,10 @@ export default function Auth() {
                     >
                         <div className="text-center">
                             <span className="text-white font-semibold text-lg text-center">
-                            Test Credentials
+                                Test Credentials
                             </span>
                             <div className="creds my-3 text-white">
-                                <b>Email:</b> microsoft@taskwhirl.com<br/>
+                                <b>Email:</b> microsoft@taskwhirl.com<br />
                                 <b>Password:</b> 1122
                             </div>
                             <label
@@ -122,18 +121,16 @@ export default function Auth() {
                                 <Switch
                                     checked={rememberMe}
                                     onChange={setRememberMe}
-                                    className={`${
-                                        rememberMe
+                                    className={`${rememberMe
                                             ? "bg-yellow-500"
                                             : "bg-gray-200"
-                                    } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400`}
+                                        } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-400`}
                                 >
                                     <span
-                                        className={`${
-                                            rememberMe
+                                        className={`${rememberMe
                                                 ? "translate-x-6"
                                                 : "translate-x-1"
-                                        } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
+                                            } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
                                     />
                                 </Switch>
                                 <span className="ml-3 text-sm text-gray-900 dark:text-gray-300 select-none">
@@ -150,8 +147,8 @@ export default function Auth() {
                             {loading
                                 ? "Loading..."
                                 : isSignIn
-                                ? "Sign In"
-                                : "Sign Up"}
+                                    ? "Sign In"
+                                    : "Sign Up"}
                         </button>
                     </form>
 

@@ -152,8 +152,8 @@ const Projects = () => {
         tagQuery === ""
             ? tags
             : tags.filter((tag) =>
-                  tag.name.toLowerCase().includes(tagQuery.toLowerCase())
-              );
+                tag.name.toLowerCase().includes(tagQuery.toLowerCase())
+            );
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -313,19 +313,18 @@ const Projects = () => {
                                             .map((task) => (
                                                 <div
                                                     key={task.id}
-                                                    className={`task border-2 dots-bg w-full h-full rounded-2xl p-1 px-2 ${
-                                                        task.status ===
-                                                        "Ongoing"
+                                                    className={`task border-2 dots-bg w-full h-full rounded-2xl p-1 px-2 ${task.status ===
+                                                            "Ongoing"
                                                             ? "bg-yellow-100 border-yellow-200"
                                                             : "bg-green-100 border-green-200"
-                                                    }`}
+                                                        }`}
                                                 >
                                                     <div className="font-semibold">
                                                         {task.title}
                                                     </div>
                                                     {task.task_tags &&
                                                         task.task_tags.length >
-                                                            0 && (
+                                                        0 && (
                                                             <div className="mt-2 p-1 flex flex-wrap gap-2">
                                                                 {task.task_tags.map(
                                                                     ({

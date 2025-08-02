@@ -19,7 +19,7 @@ const Topbar = ({ session }: TopbarProps) => {
                 </div>
                 <div className="topbar-days flex items-center justify-center flex-1 mx-auto">
                     <a target="_blank" href="https://github.com/TheLinuxGuy-ssh/Unite.Do" className="topbar-days-btn bg-black text-white flex items-center justify-center mx-1 border-1 py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] hover:text-black select-none hover:cursor-pointer">
-                       <i className="fa-brands fa-github mr-4"></i> GitHub
+                        <i className="fa-brands fa-github mr-4"></i> GitHub
                     </a>
                     <a target="_blank" href="https://unite-do.vercel.app" className="topbar-days-btn flex items-center justify-center mx-1 border-1 border-yellow-400 bg-[#fcef30] py-2 px-5 rounded-4xl duration-200 hover:bg-[#fecf3e] select-none hover:cursor-pointer">
                         Demo Link
@@ -27,15 +27,15 @@ const Topbar = ({ session }: TopbarProps) => {
                 </ div>
                 <div className="topbar-utils flex flex-1 justify-end h-auto">
                     <Menu>
-                    <MenuButton className="topbar-btn bg-white aspect-square mx-1 w-[3.5rem] rounded-full flex justify-center items-center duration-300 border border-transparent hover:border-[#fecf3e]">
-                        <i className="fa-regular fa-bell"></i>
-                    </MenuButton>
-                    <MenuItems
+                        <MenuButton className="topbar-btn bg-white aspect-square mx-1 w-[3.5rem] rounded-full flex justify-center items-center duration-300 border border-transparent hover:border-[#fecf3e]">
+                            <i className="fa-regular fa-bell"></i>
+                        </MenuButton>
+                        <MenuItems
                             anchor="bottom"
                             transition
                             className="origin-top flex justify-center w-90 h-90 mt-3 items-center transition duration-100 outline-0 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white text-xl rounded-2xl mx-5 my-2 w-50 border-3 border-gray-300"
                         >
-                           No Notications
+                            No Notications
                         </MenuItems>
                     </Menu>
                     <Menu>

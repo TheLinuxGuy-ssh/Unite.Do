@@ -56,8 +56,8 @@ const Project = () => {
         tagQuery === ""
             ? tags
             : tags.filter((tag) =>
-                  tag.name.toLowerCase().includes(tagQuery.toLowerCase())
-              );
+                tag.name.toLowerCase().includes(tagQuery.toLowerCase())
+            );
     const fetchProjectDetails = async () => {
         if (!projectId) {
             setError("No project  provided");
@@ -290,104 +290,101 @@ const Project = () => {
                                 .filter((task) => task.status === "Ongoing")
                                 .map((task) => (
                                     <div
-                                key={task.id}
-                                className="flex flex-col duration-100 hover:bg-yellow-200 bg-yellow-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleTaskEdit(task.id);
-                                }}
-                            >
-                                <div className="flex flex-1 pt-2 items-center">
-                                    <div className="para text-xl mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
-                                    <div className="flex font-semibold p-4 items-center text-xl ">
-                                        <span className="ml-2 mr-5">
-                                            <i className="fa-solid fa-list" />
-                                        </span>
-                                        {task.title}
-                                    <div className="ml-5 flex flex-1 items-center">
-                                        <div
-                                            className={`w-fit py-2 px-4 rounded-lg dots-bg font-bold text-white ${
-                                                (task.status === "Ongoing" &&
-                                                    "bg-yellow-400") ||
-                                                (task.status === "Assigned" &&
-                                                    "bg-red-400") ||
-                                                (task.status === "Completed" &&
-                                                    "bg-green-400")
-                                            }`}
-                                        >
-                                            {task.status}
+                                        key={task.id}
+                                        className="flex flex-col duration-100 hover:bg-yellow-200 bg-yellow-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleTaskEdit(task.id);
+                                        }}
+                                    >
+                                        <div className="flex flex-1 pt-2 items-center">
+                                            <div className="para text-xl mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
+                                                <div className="flex font-semibold p-4 items-center text-xl ">
+                                                    <span className="ml-2 mr-5">
+                                                        <i className="fa-solid fa-list" />
+                                                    </span>
+                                                    {task.title}
+                                                    <div className="ml-5 flex flex-1 items-center">
+                                                        <div
+                                                            className={`w-fit py-2 px-4 rounded-lg dots-bg font-bold text-white ${(task.status === "Ongoing" &&
+                                                                    "bg-yellow-400") ||
+                                                                (task.status === "Assigned" &&
+                                                                    "bg-red-400") ||
+                                                                (task.status === "Completed" &&
+                                                                    "bg-green-400")
+                                                                }`}
+                                                        >
+                                                            {task.status}
+                                                        </div>
+                                                        <div className="profile flex flex-1 justify-end">
+                                                            <img src="../../public/profile.webp" className="w-10 rounded-full" alt="profile.webp" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="task-desc mx-2 my-2">
+                                                    {task.description}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="profile flex flex-1 justify-end">
-                                            <img src="../../public/profile.webp" className="w-10 rounded-full" alt="profile.webp" />
+                                        <div className="text-center py-5 text-gray-800 font-bold text-lg ml-5">
+                                            Due Date: {task.due_date?.split("T")[0]}
                                         </div>
                                     </div>
-                                    </div>
-                                    <div className="task-desc mx-2 my-2">
-                                    {task.description}
-                                    </div>
-                                </div>
-                                </div>
-                                <div className="text-center py-5 text-gray-800 font-bold text-lg ml-5">
-                                    Due Date: {task.due_date?.split("T")[0]}
-                                </div>
-                            </div>
                                 ))}
                             {tasks
                                 .filter((task) => task.status === "Completed")
                                 .map((task) => (
                                     <div
-                                key={task.id}
-                                className="flex flex-col duration-100 hover:bg-green-200 bg-green-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleTaskEdit(task.id);
-                                }}
-                            >
-                                <div className="flex flex-1 pt-2 items-center">
-                                    <div className="para text-xl mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
-                                    <div className="flex font-semibold p-4 items-center text-xl ">
-                                        <span className="ml-2 mr-5">
-                                            <i className="fa-solid fa-list" />
-                                        </span>
-                                        {task.title}
-                                    <div className="ml-5 flex flex-1 items-center">
-                                        <div
-                                            className={`w-fit py-2 px-4 rounded-lg dots-bg font-bold text-white ${
-                                                (task.status === "Ongoing" &&
-                                                    "bg-yellow-400") ||
-                                                (task.status === "Assigned" &&
-                                                    "bg-red-400") ||
-                                                (task.status === "Completed" &&
-                                                    "bg-green-400")
-                                            }`}
-                                        >
-                                            {task.status}
+                                        key={task.id}
+                                        className="flex flex-col duration-100 hover:bg-green-200 bg-green-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            handleTaskEdit(task.id);
+                                        }}
+                                    >
+                                        <div className="flex flex-1 pt-2 items-center">
+                                            <div className="para text-xl mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
+                                                <div className="flex font-semibold p-4 items-center text-xl ">
+                                                    <span className="ml-2 mr-5">
+                                                        <i className="fa-solid fa-list" />
+                                                    </span>
+                                                    {task.title}
+                                                    <div className="ml-5 flex flex-1 items-center">
+                                                        <div
+                                                            className={`w-fit py-2 px-4 rounded-lg dots-bg font-bold text-white ${(task.status === "Ongoing" &&
+                                                                    "bg-yellow-400") ||
+                                                                (task.status === "Assigned" &&
+                                                                    "bg-red-400") ||
+                                                                (task.status === "Completed" &&
+                                                                    "bg-green-400")
+                                                                }`}
+                                                        >
+                                                            {task.status}
+                                                        </div>
+                                                        <div className="profile flex flex-1 justify-end">
+                                                            <img src="../../public/profile.webp" className="w-10 rounded-full" alt="profile.webp" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="task-desc mx-2 my-2">
+                                                    {task.description}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="profile flex flex-1 justify-end">
-                                            <img src="../../public/profile.webp" className="w-10 rounded-full" alt="profile.webp" />
+                                        <div className="text-center py-5 text-gray-800 font-bold text-lg ml-5">
+                                            Due Date: {task.due_date?.split("T")[0]}
                                         </div>
                                     </div>
-                                    </div>
-                                    <div className="task-desc mx-2 my-2">
-                                    {task.description}
-                                    </div>
-                                </div>
-                                </div>
-                                <div className="text-center py-5 text-gray-800 font-bold text-lg ml-5">
-                                    Due Date: {task.due_date?.split("T")[0]}
-                                </div>
-                            </div>
                                 ))}
                         </>
                     )}
                 </div>
             </div>
             <div
-                className={`duration-200 overflow-hidden ${
-                    openEdit
+                className={`duration-200 overflow-hidden ${openEdit
                         ? "visible flex flex-2 ml-4 p-6"
                         : "invisible w-[0]"
-                } rounded-4xl bg-white justify-center items-center`}
+                    } rounded-4xl bg-white justify-center items-center`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {editTask && (
@@ -461,10 +458,9 @@ const Project = () => {
                                                 key={tag.id}
                                                 value={tag}
                                                 className={({ active }) =>
-                                                    `cursor-pointer select-none px-4 py-2 ${
-                                                        active
-                                                            ? "bg-yellow-200"
-                                                            : ""
+                                                    `cursor-pointer select-none px-4 py-2 ${active
+                                                        ? "bg-yellow-200"
+                                                        : ""
                                                     }`
                                                 }
                                             >
