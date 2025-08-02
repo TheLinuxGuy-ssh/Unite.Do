@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import "./App.css";
 import * as comp from "./components";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -30,6 +30,7 @@ const App = () => {
 
     return (
         <>
+        <SpeedInsights />
             <comp.Topbar session={session} />
             <div className="flex  h-full">
                 <comp.Sidebar />
