@@ -410,12 +410,12 @@ const Dashboard = () => {
                         </div>
                         <div className="dashboard-card-content h-full  flex-1 overflow-y-scroll">
                             <Disclosure defaultOpen={true}>
-                                <DisclosureButton className="py-4 px-4 my-2 text-lg font-semibold rounded-4xl w-full border border-gray-200 flex items-center">
-                                    <div className="number bg-yellow-200 py-1 px-4 rounded-full mr-6">
+                                <DisclosureButton className="py-1 px-1 my-2 text-md font-semibold rounded-4xl w-full border border-gray-200 flex items-center">
+                                    <div className="number bg-yellow-200 py-1 px-3 text-md rounded-full mr-2">
                                         {ongoingItemCount}
                                     </div>
                                     OnGoing Tasks{" "}
-                                    <i className="fa-solid fa-chevron-down text-right ml-auto"></i>
+                                    <i className="fa-solid fa-chevron-down mx-1 text-right ml-auto"></i>
                                 </DisclosureButton>
                                 {tasks.map(
                                     (task) =>
@@ -425,7 +425,7 @@ const Dashboard = () => {
                                                 className="card dots-bg w-full border-3 border-yellow-100 bg-yellow-100/50 mt-4 p-5 h-fit h-30 rounded-4xl origin-top transition duration-200 ease-out"
                                             >
                                                 <div className="card-header flex">
-                                                    <h1 className="title text-xl font-semibold">
+                                                    <h1 className="title text-lg font-semibold">
                                                         <i className="fa-solid fa-list"></i>{" "}
                                                         {task.title}
                                                     </h1>
@@ -469,22 +469,22 @@ const Dashboard = () => {
                                 )}
                             </Disclosure>
                             <Disclosure>
-                                <DisclosureButton className="py-4 px-4 my-2 text-lg font-semibold rounded-4xl w-full border border-gray-200 flex items-center">
-                                    <div className="number bg-green-200 py-1 px-4 rounded-full mr-6">
+                                <DisclosureButton className="py-1 px-1 my-2 text-md font-semibold rounded-4xl w-full border border-gray-200 flex items-center">
+                                    <div className="number text-md bg-green-200 py-1 px-3 rounded-full mr-2">
                                         {completedItemCount}
                                     </div>
                                     Completed Tasks{" "}
-                                    <i className="fa-solid fa-chevron-down text-right ml-auto"></i>
+                                    <i className="fa-solid fa-chevron-down mx-1 text-right ml-auto"></i>
                                 </DisclosureButton>
                                 {tasks.map(
                                     (task) =>
                                         task.status === "Completed" && (
                                             <DisclosurePanel
                                                 key={task.id}
-                                                className="card dots-bg w-full border-3 border-green-100 bg-green-100/50 mt-4 p-6 h-fit rounded-4xl"
+                                                className="card dots-bg w-full border-3 border-green-100 bg-green-100/50 mt-2 p-4 h-fit rounded-4xl"
                                             >
                                                 <div className="card-header flex items-center">
-                                                    <h1 className="title text-2xl">
+                                                    <h1 className="title text-lg font-bold">
                                                         <i className="fa-solid fa-list mr-2"></i>{" "}
                                                         {task.title}
                                                     </h1>
