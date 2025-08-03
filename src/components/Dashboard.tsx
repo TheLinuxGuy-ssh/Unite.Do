@@ -422,10 +422,10 @@ const Dashboard = () => {
                                         task.status === "Ongoing" && (
                                             <DisclosurePanel
                                                 key={task.id}
-                                                className="card dots-bg w-full border-3 border-yellow-100 bg-yellow-100/50 mt-4 p-5 h-fit h-30 rounded-4xl origin-top transition duration-200 ease-out"
+                                                className="card dots-bg w-full border-3 border-yellow-100 bg-yellow-100/50 mt-4 p-3 h-fit h-30 rounded-4xl origin-top transition duration-200 ease-out"
                                             >
                                                 <div className="card-header flex">
-                                                    <h1 className="title text-lg font-semibold">
+                                                    <h1 className="title text-md font-semibold">
                                                         <i className="fa-solid fa-list"></i>{" "}
                                                         {task.title}
                                                     </h1>
@@ -521,17 +521,17 @@ const Dashboard = () => {
                             </Disclosure>
                         </div>
                     </div>
-                    <div className="dashboard-card mt-2 bg-white rounded-4xl flex-1 w-full py-3 px-6">
-                        <div className="dashboard-card-header flex items-center border-b-3 border-gray-200 py-1">
-                            <span className="dashboard-card-heading font-semibold text-gray-600 text-lg">
+                    <div className="dashboard-card mt-2 bg-white rounded-4xl flex-1 w-full py-1 px-2.5">
+                        <div className="dashboard-card-header flex items-center border-b-3 border-gray-200 py-2">
+                            <span className="dashboard-card-heading font-semibold ml-4 text-gray-600 text-lg">
                                 Tags
                             </span>
-                            <div
+                            <button
+                                className="bg-yellow-100 ml-auto duration-100 border-2 border-yellow-300 hover:bg-[#fcef30] py-2 px-4 rounded-4xl text-black"
                                 onClick={() => setTagIsOpen(true)}
-                                className="dashboard-add-btn border-2 border-gray-300 flex items-center justify-center ml-auto py-2.5 p-2 rounded-full duration-300 hover:border-[#fecf3e] hover:bg-[#fecf3e]"
                             >
-                                <i className="fa-regular fa-plus"></i>
-                            </div>
+                                New Tag <i className="fa fa-plus"></i>
+                            </button>
                         </div>
                         <div className="dashboard-card-content grid grid-cols-2">
                             {tags.map((tag) => (
@@ -570,7 +570,7 @@ const Dashboard = () => {
                             className="fixed inset-0 bg-black/30"
                         >
                             <div className="fixed inset-0 flex w-screen items-center justify-center p-4 transition duration-300 ease-out">
-                                <DialogPanel className="w-lg space-y-4 border border-gray-400 rounded-4xl bg-white py-8 px-8">
+                                <DialogPanel className="w-lg space-y-4 border border-gray-400 rounded-xl bg-white py-4 px-4">
                                     <form
                                         onSubmit={handleProjectSubmit}
                                         className="block"
@@ -633,12 +633,12 @@ const Dashboard = () => {
                             className="fixed inset-0 bg-black/30"
                         >
                             <div className="fixed inset-0 flex w-screen items-center justify-center p-4 transition duration-300 ease-out">
-                                <DialogPanel className="w-3xl space-y-4 border border-gray-400 rounded-4xl bg-white py-8 px-8">
+                                <DialogPanel className="w-md space-y-4 border border-gray-400 rounded-xl bg-white p-4">
                                     <form
                                         onSubmit={handleTagSubmit}
                                         className="block"
                                     >
-                                        <DialogTitle className="text-2xl font-semibold">
+                                        <DialogTitle className="text-lg font-semibold">
                                             <Field>
                                                 <Input
                                                     type="text"
@@ -646,7 +646,7 @@ const Dashboard = () => {
                                                     placeholder="Tag Name..."
                                                     onChange={handleTagChange}
                                                     value={tagData.name}
-                                                    className="y-2 border-gray-200 py-3 outline-0 border-0 w-full text-4xl text-gray-400 data-focus:text-black hover:text-black"
+                                                    className="y-2 border-gray-200 py-3 outline-0 border-0 w-full text-xl text-gray-400 data-focus:text-black hover:text-black"
                                                     required
                                                 />
                                             </Field>
@@ -657,7 +657,7 @@ const Dashboard = () => {
                                                     onClick={() =>
                                                         setTagIsOpen(false)
                                                     }
-                                                    className="rounded-lg border-3 border-gray-200 text-gray-700 px-10 py-3 text-xl"
+                                                    className="rounded-lg border-3 border-gray-200 text-gray-700 px-4 py-1 text-md"
                                                 >
                                                     Cancel
                                                 </Button>
@@ -665,7 +665,7 @@ const Dashboard = () => {
                                             <div className="flex flex-1 justify-end">
                                                 <Button
                                                     type="submit"
-                                                    className="rounded-lg bg-[#fecf3e] text-gray-700 px-10 py-3 text-xl"
+                                                    className="rounded-lg bg-[#fecf3e] text-gray-700 px-4 py-1 text-lg"
                                                 >
                                                     Done
                                                 </Button>
@@ -694,7 +694,7 @@ const Dashboard = () => {
                             className="fixed inset-0 bg-black/30"
                         >
                             <div className="fixed inset-0 flex w-screen items-center justify-center p-4 transition duration-300 ease-out">
-                                <DialogPanel className="w-3xl space-y-4 border border-gray-400 rounded-4xl bg-white py-8 px-8">
+                                <DialogPanel className="w-lg space-y-4 border border-gray-400 rounded-xl bg-white py-4 px-4">
                                     <form
                                         onSubmit={handleSubmit}
                                         className="block"
@@ -707,20 +707,20 @@ const Dashboard = () => {
                                                     placeholder="Task..."
                                                     onChange={handleChange}
                                                     value={taskData.title}
-                                                    className="y-2 border-gray-200 py-3 outline-0 border-0 w-full text-4xl text-gray-400 data-focus:text-black hover:text-black"
+                                                    className="border-gray-200 py-2 outline-0 border-0 w-full text-2xl text-gray-400 data-focus:text-black hover:text-black"
                                                     required
                                                 />
                                             </Field>
                                         </DialogTitle>
-                                        <div className="content my-2">
+                                        <div className="content">
                                             <Field className="w-50 mx-1">
-                                                <Label className="font-semibold text-xl my-2">
+                                                <Label className="font-semibold text-md my-2">
                                                     Due Date
                                                 </Label>
                                                 <Input
                                                     type="date"
                                                     name="due_date"
-                                                    className="block mb-4 border-3 text-xl data-focus:outline-[#fecf3e] border-gray-100 py-3 px-4 mt-2 rounded-lg w-full data-focus:bg-gray-100 data-hover:shadow"
+                                                    className="block mb-4 border-3 text-md data-focus:outline-[#fecf3e] border-gray-100 py-1 px-2 mt-2 rounded-lg w-full data-focus:bg-gray-100 data-hover:shadow"
                                                     placeholder="Due Date"
                                                     onChange={handleChange}
                                                     value={
@@ -732,13 +732,13 @@ const Dashboard = () => {
                                             </Field>
                                             <div className="flex w-full">
                                                 <Field className="w-60 mx-1">
-                                                    <Label className="font-semibold text-xl mr-4">
+                                                    <Label className="font-semibold text-md mr-4">
                                                         Project
                                                     </Label>
                                                     <Select
                                                         name="project"
                                                         value={taskData.project}
-                                                        className="block mb-4 border-3 text-xl border-gray-100 py-3 px-4 mt-2 rounded-lg w-full data-focus:bg-gray-100"
+                                                        className="block mb-4 border-3 text-md border-gray-100 py-3 px-2 mt-2 rounded-lg w-full data-focus:bg-gray-100"
                                                         onChange={handleChange}
                                                     >
                                                         <option
@@ -766,12 +766,12 @@ const Dashboard = () => {
                                                     </Select>
                                                 </Field>
                                                 <Field className="ml-8 w-50 mx-1">
-                                                    <Label className="font-semibold text-xl mr-4">
+                                                    <Label className="font-semibold text-md mr-4">
                                                         Assign
                                                     </Label>
                                                     <Select
                                                         name="assign"
-                                                        className="block mb-4 border-3 text-xl border-gray-100 py-3 px-4 mt-2 rounded-lg w-full data-focus:bg-gray-100"
+                                                        className="block mb-4 border-3 text-md border-gray-100 py-3 px-2 mt-2 rounded-lg w-full data-focus:bg-gray-100"
                                                         onChange={handleChange}
                                                         value={taskData.assigned_to}
                                                     >
@@ -785,11 +785,11 @@ const Dashboard = () => {
                                                 </Field>
                                             </div>
                                         </div>
-                                        <Field className="w-full mt-4">
-                                            <Label className="font-semibold text-xl mb-2 block">
+                                        <Field className="mx-1">
+                                            <Label className="font-semibold text-md mb-2 block">
                                                 Tags
                                             </Label>
-                                            <div className="flex flex-wrap gap-2 mb-2">
+                                            <div className="flex flex-wrap gap-2">
                                                 {selectedTags.map((tag) => (
                                                     <span
                                                         key={tag.id}
@@ -853,14 +853,14 @@ const Dashboard = () => {
                                                 </ComboboxOptions>
                                             </Combobox>
                                         </Field>
-                                        <Field className="mt-4">
-                                            <Label className="text-xl font-semibold">
+                                        <Field className="mt-2">
+                                            <Label className="text-md font-semibold">
                                                 Description
                                             </Label>
                                             <Textarea
                                                 name="description"
                                                 placeholder="Your Description..."
-                                                className="border-3 border-gray-100 data-focus:outline-[#fecf3e] text-xl my-2 py-3 px-4 min-h-40 rounded-lg w-full data-focus:bg-gray-100 data-hover:shadow"
+                                                className="border-3 border-gray-100 data-focus:outline-[#fecf3e] text-md my-2 py-3 px-4 min-h-40 rounded-lg w-full data-focus:bg-gray-100 data-hover:shadow"
                                                 onChange={handleChange}
                                                 value={taskData.description}
                                             />
@@ -871,7 +871,7 @@ const Dashboard = () => {
                                                     onClick={() =>
                                                         setTaskIsOpen(false)
                                                     }
-                                                    className="rounded-lg border-3 border-gray-200 text-gray-700 px-10 py-3 text-xl"
+                                                    className="rounded-lg border-3 border-gray-200 text-gray-700 px-10 py-1 text-md"
                                                 >
                                                     Cancel
                                                 </Button>
@@ -879,7 +879,7 @@ const Dashboard = () => {
                                             <div className="flex flex-1 justify-end">
                                                 <Button
                                                     type="submit"
-                                                    className="rounded-lg bg-[#fecf3e] text-gray-700 px-10 py-3 text-xl"
+                                                    className="rounded-lg bg-[#fecf3e] text-gray-700 px-10 py-1 text-md"
                                                 >
                                                     Done
                                                 </Button>
