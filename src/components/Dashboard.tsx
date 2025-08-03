@@ -307,15 +307,15 @@ const Dashboard = () => {
 
     return (
         <>
-            <div className="do-section-box p-1">
-                <div className="flex flex-3 flex-col m-2 p-5 bg-white border-2 border-gray-100 rounded-4xl">
+            <div className="do-section-box ">
+                <div className="flex flex-3 flex-col m-2 p-2.5 py-0 bg-white border-2 border-gray-100 rounded-4xl">
                     <div className="dashboard-card-header flex items-center border-b-3 border-gray-200">
-                        <span className="dashboard-card-heading text-2xl text-gray-700 mt-5 mx-5 mb-3 font-semibold">
+                        <span className="dashboard-card-heading text-xl text-gray-700 mt-5 mx-5 mb-3 font-semibold">
                             Projects
                         </span>
                         <div className="card-header-right ml-auto">
                             <button
-                                className="bg-yellow-100 duration-100 border-2 border-yellow-300 hover:bg-[#fcef30] py-2 px-4 rounded-lg text-black"
+                                className="bg-yellow-100 duration-100 border-2 border-yellow-300 hover:bg-[#fcef30] py-2 px-4 rounded-4xl text-black"
                                 onClick={() => setProjectIsOpen(true)}
                             >
                                 New Project <i className="fa fa-plus"></i>
@@ -327,13 +327,13 @@ const Dashboard = () => {
                             <NavLink
                                 to={`/project/${projectItem.id}`}
                                 key={projectItem.id}
-                                className="card w-full overflow-hidden h-fit rounded-4xl  bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
+                                className="card flex flex-col w-full overflow-hidden h-full rounded-4xl  bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
                             >
-                                <div className="project-title p-4 pb-0 text-xl font-semibold mb-5">
+                                <div className="project-title p-4 pb-0 text-md font-bold mb-4">
                                     <i className="fa-regular fa-folder mr-2"></i>{" "}
                                     {projectItem.name}
                                 </div>
-                                <div className="project-content m-2 p-4 rounded-4xl bg-gray-100 h-[100%]">
+                                <div className="project-content flex flex-col m-2 mt-0 p-4 rounded-4xl bg-gray-100 h-[100%]">
                                     {tasks.filter(
                                         (task) => task.project === projectItem.id
                                     ).length !== 0 ? (
@@ -344,7 +344,7 @@ const Dashboard = () => {
                                                         task.project ===
                                                         projectItem.id
                                                 )
-                                                .map((task) => (
+                                                .slice(0,4).map((task) => (
                                                     <div
                                                         key={task.id}
                                                         className={`task border-2 w-full h-full dots-bg rounded-2xl p-1 px-2 ${task.status ===
@@ -353,10 +353,10 @@ const Dashboard = () => {
                                                                 : "bg-green-100 border-green-200"
                                                             }`}
                                                     >
-                                                        <div className="font-semibold">
+                                                        <div className="font-bold text-sm">
                                                             {task.title}
                                                         </div>
-                                                        <div className="mt-2 p-1 flex flex-wrap gap-2">
+                                                        <div className="mt-1  flex flex-wrap gap-1">
                                                             {task.task_tags &&
                                                                 task.task_tags.length >
                                                                 0 && (
@@ -370,7 +370,7 @@ const Dashboard = () => {
                                                                                     key={
                                                                                         tag_id
                                                                                     }
-                                                                                    className="bg-blue-200 border-2 border-blue-300 px-2 py-1 rounded-2xl text-sm font-medium"
+                                                                                    className="bg-blue-200 text-xs border-2 border-blue-300 px-1.5 py-1 rounded-2xl font-medium"
                                                                                 >
                                                                                     {
                                                                                         tags.name
@@ -385,7 +385,7 @@ const Dashboard = () => {
                                                 ))}
                                         </div>
                                     ) : (
-                                        <div className="project-subtitle mt-5 text-lg font-semibold text-gray-600 my-2">
+                                        <div className="project-subtitle flex items-center justify-center h-full  text-lg font-semibold text-gray-600 my-2">
                                             No Task Assigned
                                         </div>
                                     )}
@@ -395,20 +395,20 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className="flex flex-1 m-2 flex-col overflow-hidden rounded-4xl">
-                    <div className="dashboard-card mb-2 bg-white flex-1 overflow-hidden h-full rounded-4xl w-full py-5 px-6">
+                <div className="flex flex-1 m-2 h-[87vh] flex-col overflow-hidden rounded-4xl">
+                    <div className="dashboard-card mb-2 bg-white  flex-1 overflow-hidden rounded-4xl w-full px-2.5">
                         <div className="dashboard-card-header flex items-center border-b-3 border-gray-200">
-                            <span className="dashboard-card-heading text-2xl text-gray-700 mt-5 mx-5 mb-3 font-semibold">
+                            <span className="dashboard-card-heading text-xl text-gray-700 mt-5 mx-5 mb-3 font-semibold">
                                 Tasks
                             </span>
-                            <div
+                                                        <button
+                                className="bg-yellow-100 ml-auto duration-100 border-2 border-yellow-300 hover:bg-[#fcef30] py-2 px-4 rounded-4xl text-black"
                                 onClick={() => setTaskIsOpen(true)}
-                                className="dashboard-add-btn border-2 border-gray-300 flex items-center justify-center ml-auto py-2.5 p-2 rounded-full duration-300 hover:border-[#fecf3e] hover:bg-[#fecf3e]"
                             >
-                                <i className="fa-regular fa-plus"></i>
-                            </div>
+                                New Task <i className="fa fa-plus"></i>
+                            </button>
                         </div>
-                        <div className="dashboard-card-content h-full flex-1 overflow-y-scroll">
+                        <div className="dashboard-card-content h-full  flex-1 overflow-y-scroll">
                             <Disclosure defaultOpen={true}>
                                 <DisclosureButton className="py-4 px-4 my-2 text-lg font-semibold rounded-4xl w-full border border-gray-200 flex items-center">
                                     <div className="number bg-yellow-200 py-1 px-4 rounded-full mr-6">
@@ -522,8 +522,8 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="dashboard-card mt-2 bg-white rounded-4xl flex-1 w-full py-3 px-6">
-                        <div className="dashboard-card-header flex items-center">
-                            <span className="dashboard-card-heading text-2xl">
+                        <div className="dashboard-card-header flex items-center border-b-3 border-gray-200 py-1">
+                            <span className="dashboard-card-heading font-semibold text-gray-600 text-lg">
                                 Tags
                             </span>
                             <div
@@ -537,9 +537,9 @@ const Dashboard = () => {
                             {tags.map((tag) => (
                                 <div
                                     key={tag.id}
-                                    className="tag flex w-full p-3 shadow shadow-sm w-fit m-1.5 border-2 border-gray-200  py-2 text-lg rounded-4xl"
+                                    className="tag flex w-full p-3 shadow shadow-sm w-fit m-1.5 border-2 border-gray-200  py-1 text-md rounded-4xl"
                                 >
-                                    <span className="tag-name w-full text-center">
+                                    <span className="tag-name  w-full text-center">
                                         {tag.name}
                                     </span>
                                     <div
@@ -570,12 +570,12 @@ const Dashboard = () => {
                             className="fixed inset-0 bg-black/30"
                         >
                             <div className="fixed inset-0 flex w-screen items-center justify-center p-4 transition duration-300 ease-out">
-                                <DialogPanel className="w-3xl space-y-4 border border-gray-400 rounded-4xl bg-white py-8 px-8">
+                                <DialogPanel className="w-lg space-y-4 border border-gray-400 rounded-4xl bg-white py-8 px-8">
                                     <form
                                         onSubmit={handleProjectSubmit}
                                         className="block"
                                     >
-                                        <DialogTitle className="text-2xl font-semibold">
+                                        <DialogTitle className="text-xl font-semibold">
                                             <Field>
                                                 <Input
                                                     type="text"
@@ -585,18 +585,18 @@ const Dashboard = () => {
                                                         handleProjectChange
                                                     }
                                                     value={projectData.name}
-                                                    className="y-2 border-gray-200 py-3 outline-0 border-0 w-full text-4xl text-gray-400 data-focus:text-black hover:text-black"
+                                                    className="y-2 border-gray-200 py-3 outline-0 border-0 w-full text-xl text-gray-400 data-focus:text-black hover:text-black"
                                                     required
                                                 />
                                             </Field>
                                         </DialogTitle>
-                                        <div className="card-footer flex mt-8">
+                                        <div className="card-footer flex mt-2">
                                             <div className="flex flex-1">
                                                 <Button
                                                     onClick={() =>
                                                         setProjectIsOpen(false)
                                                     }
-                                                    className="rounded-lg border-3 border-gray-200 text-gray-700 px-10 py-3 text-xl"
+                                                    className="rounded-lg border-3 border-gray-200 text-gray-700 px-6 py-2 text-md"
                                                 >
                                                     Cancel
                                                 </Button>
@@ -604,7 +604,7 @@ const Dashboard = () => {
                                             <div className="flex flex-1 justify-end">
                                                 <Button
                                                     type="submit"
-                                                    className="rounded-lg bg-[#fecf3e] text-gray-700 px-10 py-3 text-xl"
+                                                    className="rounded-lg bg-[#fecf3e] text-gray-700 px-6 py-2 text-md"
                                                 >
                                                     Done
                                                 </Button>

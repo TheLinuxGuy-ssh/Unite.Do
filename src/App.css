@@ -46,11 +46,12 @@ body {
 
 .do-section-box {
   display: flex;
-  height: 88vh;
+  height: 100%;
   background-color: var(--color-gray-200);
   width: 100%;
   border-radius: var(--radius-4xl);
   margin: calc(var(--spacing) * 4);
+  min-height: 89vh;
 }
 
 .project-content {
