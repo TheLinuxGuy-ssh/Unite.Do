@@ -45,7 +45,7 @@ export default function Auth() {
                             className="text-yellow-500 text-3xl flex items-center justify-center font-extrabold"
                         >
                             <img src="./logo.png" className="w-15 mr-5" alt="" />
-                            TaskWhirl
+                            Unite.Do
                         </a>
                         <h2 className="mt-2 text-2xl font-semibold text-gray-900 dark:text-white">
                             {isSignIn

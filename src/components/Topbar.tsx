@@ -15,7 +15,7 @@ const Topbar = ({ session }: TopbarProps) => {
             <div className="topbar w-full flex py-4 pb-0 items-center px-5">
                 <div className="topbar-do flex flex-1">
                     <img src="./logo.png" className="h-8 mr-4" alt="" />
-                    <span className="text-2xl font-bold">TaskWhirl</span>
+                    <span className="text-2xl font-bold">Unite.Do</span>
                 </div>
                 <div className="topbar-days flex items-center justify-center flex-1 mx-auto">
                     <a target="_blank" href="https://github.com/TheLinuxGuy-ssh/Unite.Do" className="topbar-days-btn bg-black text-white flex items-center justify-center mx-1 border-1 py-1 px-3 rounded-4xl duration-200 hover:bg-[#fecf3e] hover:text-black select-none hover:cursor-pointer">
