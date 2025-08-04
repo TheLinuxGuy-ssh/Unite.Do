@@ -288,77 +288,77 @@ const Projects = () => {
                 className="do-section-box bg-[#fff!important]"
                 data-aos="fade-right"
             >
-                <div className="projects w-full s mt-4 grid grid-cols-3 grid-rows-3 gap-4">
-                    {projects.map((projectItem) => (
-                        <NavLink
-                            to={`/project/${projectItem.id}`}
-                            key={projectItem.id}
-                            className="card w-full h-fit rounded-4xl bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
-                        >
-                            <div className="project-title p-4 pb-0 text-xl font-semibold mb-5">
-                                <i className="fa-regular fa-folder mr-2"></i>{" "}
-                                {projectItem.name}
-                            </div>
-                            {tasks.filter(
-                                (task) => task.project == projectItem.id
-                            ).length != 0 ? (
-                                <>
-                                    <div className="project-content rounded-4xl m-2 p-4 grid grid-cols-2 gap-2">
-                                        {tasks
-                                            .filter(
-                                                (task) =>
-                                                    task.project ===
-                                                    projectItem.id
-                                            )
-                                            .map((task) => (
-                                                <div
-                                                    key={task.id}
-                                                    className={`task border-2 dots-bg w-full h-full rounded-2xl p-1 px-2 ${task.status ===
-                                                            "Ongoing"
-                                                            ? "bg-yellow-100 border-yellow-200"
-                                                            : "bg-green-100 border-green-200"
-                                                        }`}
-                                                >
-                                                    <div className="font-semibold">
-                                                        {task.title}
-                                                    </div>
-                                                    {task.task_tags &&
-                                                        task.task_tags.length >
-                                                        0 && (
-                                                            <div className="mt-2 p-1 flex flex-wrap gap-2">
-                                                                {task.task_tags.map(
-                                                                    ({
-                                                                        tag_id,
-                                                                        tags,
-                                                                    }) => (
-                                                                        <span
-                                                                            key={
-                                                                                tag_id
-                                                                            }
-                                                                            className="bg-yellow-200 border-2 border-yellow-300 px-2 py-1 rounded-2xl text-sm font-medium"
-                                                                        >
-                                                                            {
-                                                                                tags.name
-                                                                            }
-                                                                        </span>
-                                                                    )
+                    <div className="projects p-2 mt-4 grid grid-cols-4 gap-4">
+                        {projects.map((projectItem) => (
+                            <NavLink
+                                to={`/project/${projectItem.id}`}
+                                key={projectItem.id}
+                                className="card flex flex-col w-full overflow-hidden h-full rounded-4xl  bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
+                            >
+                                <div className="project-title p-4 pb-0 text-md font-bold mb-4">
+                                    <i className="fa-regular fa-folder mr-2"></i>{" "}
+                                    {projectItem.name}
+                                </div>
+                                <div className="project-content flex flex-col m-2 mt-0 p-4 rounded-4xl bg-gray-100 h-[100%]">
+                                    {tasks.filter(
+                                        (task) => task.project === projectItem.id
+                                    ).length !== 0 ? (
+                                        <div className="grid grid-cols-2 gap-2">
+                                            {tasks
+                                                .filter(
+                                                    (task) =>
+                                                        task.project ===
+                                                        projectItem.id
+                                                )
+                                                .slice(0,4).map((task) => (
+                                                    <div
+                                                        key={task.id}
+                                                        className={`task border-2 w-full h-full dots-bg rounded-2xl p-1 px-2 ${task.status ===
+                                                                "Ongoing"
+                                                                ? "bg-yellow-100 border-yellow-200"
+                                                                : "bg-green-100 border-green-200"
+                                                            }`}
+                                                    >
+                                                        <div className="font-bold text-sm">
+                                                            {task.title}
+                                                        </div>
+                                                        <div className="mt-1  flex flex-wrap gap-1">
+                                                            {task.task_tags &&
+                                                                task.task_tags.length >
+                                                                0 && (
+                                                                    <>
+                                                                        {task.task_tags.map(
+                                                                            ({
+                                                                                tag_id,
+                                                                                tags,
+                                                                            }) => (
+                                                                                <span
+                                                                                    key={
+                                                                                        tag_id
+                                                                                    }
+                                                                                    className="bg-blue-200 text-xs border-2 border-blue-300 px-1.5 py-1 rounded-2xl font-medium"
+                                                                                >
+                                                                                    {
+                                                                                        tags.name
+                                                                                    }
+                                                                                </span>
+                                                                            )
+                                                                        )}
+                                                                    </>
                                                                 )}
-                                                            </div>
-                                                        )}
-                                                </div>
-                                            ))}
-                                    </div>
-                                </>
-                            ) : (
-                                <>
-                                    <div className="project-subtitle mt-5 text-lg font-semibold text-gray-600 my-2">
-                                        No Task Assigned
-                                    </div>
-                                </>
-                            )}
-                        </NavLink>
-                    ))}
-                </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                        </div>
+                                    ) : (
+                                        <div className="project-subtitle flex items-center justify-center h-full  text-lg font-semibold text-gray-600 my-2">
+                                            No Task Assigned
+                                        </div>
+                                    )}
+                                </div>
+                            </NavLink>
+                        ))}
+                    </div>
             </div>
         </>
     );

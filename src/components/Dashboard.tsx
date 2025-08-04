@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
+import type { Session } from "@supabase/supabase-js";
 import supabase from "../../utils/supabase";
 import type * as type from "../../utils/interfaces"
 import {
@@ -23,7 +24,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import AOS from "aos";
 
-const Dashboard = () => {
+type DashboardProps = {
+    session: Session | null;
+};
+
+
+const Dashboard = ( {session} : DashboardProps ) => {
     const [taskIsOpen, setTaskIsOpen] = useState(false);
     const [tagIsOpen, setTagIsOpen] = useState(false);
     const [projectIsOpen, setProjectIsOpen] = useState(false);
