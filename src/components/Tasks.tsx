@@ -135,32 +135,32 @@ const Tasks = () => {
         <div className="do-section-box flex" onClick={() => setOpenEdit(false)}>
             <div className="bg-white w-full rounded-4xl flex-7">
                 <div className="team team-header bg-white p-5 rounded-t-4xl border-b-2 border-gray-300 w-full h-fit">
-                    <span className="title text-3xl font-semibold">
+                    <span className="title text-xl font-semibold">
                         Manage Your Tasks
                     </span>
                 </div>
-                <div className="content grid grid-cols-3 gap-4 my-6 px-4 bg-white w-full">
+                <div className={`content grid ${openEdit ? "grid-cols-3" : "grid-cols-4"} gap-4 my-6 px-4 bg-white w-full`}>
                     {tasks
                         .filter((task) => task.status === "Ongoing")
                         .map((task) => (
                             <div
                                 key={task.id}
-                                className="flex flex-col duration-100 hover:bg-yellow-200 bg-yellow-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
+                                className="flex flex-col hover:shadow-md duration-100 hover:bg-yellow-200 bg-yellow-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleTaskEdit(task.id);
                                 }}
                             >
                                 <div className="flex flex-1 pt-2 items-center">
-                                    <div className="para text-xl mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
-                                        <div className="flex font-semibold p-4 items-center text-xl ">
+                                    <div className="para text-md mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
+                                        <div className="flex font-semibold p-4 items-center text-md ">
                                             <span className="ml-2 mr-5">
-                                                <i className="fa-solid fa-list" />
+
                                             </span>
                                             {task.title}
                                             <div className="ml-5 flex flex-1 items-center">
                                                 <div
-                                                    className={`w-fit py-2 px-4 rounded-lg dots-bg font-bold text-white ${(task.status === "Ongoing" &&
+                                                    className={`w-fit py-2 px-4 rounded-lg text-sm dots-bg font-bold text-white ${(task.status === "Ongoing" &&
                                                             "bg-yellow-400") ||
                                                         (task.status === "Assigned" &&
                                                             "bg-red-400") ||
@@ -171,16 +171,16 @@ const Tasks = () => {
                                                     {task.status}
                                                 </div>
                                                 <div className="profile flex flex-1 justify-end">
-                                                    <img src="./profile.webp" className="w-10 rounded-full" alt="profile.webp" />
+                                                    <img src="./profile.webp" className="w-6 rounded-full" alt="profile.webp" />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="task-desc mx-2 my-2">
+                                        <div className="task-desc text-sm mx-2 my-2">
                                             {task.description}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="text-center py-5 text-gray-800 font-bold text-lg ml-5">
+                                <div className="text-center py-5 text-gray-800 font-bold text-sm ml-5">
                                     Due Date: {task.due_date?.split("T")[0]}
                                 </div>
                             </div>
@@ -190,22 +190,22 @@ const Tasks = () => {
                         .map((task) => (
                             <div
                                 key={task.id}
-                                className="flex flex-col duration-100 hover:bg-green-200 bg-green-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
+                                className="flex flex-col hover:shadow-md duration-100 hover:bg-yellow-200 bg-yellow-100 border-2 border-gray-200 rounded-4xl cursor-pointer"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleTaskEdit(task.id);
                                 }}
                             >
                                 <div className="flex flex-1 pt-2 items-center">
-                                    <div className="para text-xl mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
-                                        <div className="flex font-semibold p-4 items-center text-xl ">
+                                    <div className="para text-md mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
+                                        <div className="flex font-semibold p-4 items-center text-md ">
                                             <span className="ml-2 mr-5">
                                                 <i className="fa-solid fa-list" />
                                             </span>
                                             {task.title}
                                             <div className="ml-5 flex flex-1 items-center">
                                                 <div
-                                                    className={`w-fit py-2 px-4 rounded-lg dots-bg font-bold text-white ${(task.status === "Ongoing" &&
+                                                    className={`w-fit py-2 px-4 rounded-lg text-sm dots-bg font-bold text-white ${(task.status === "Ongoing" &&
                                                             "bg-yellow-400") ||
                                                         (task.status === "Assigned" &&
                                                             "bg-red-400") ||
@@ -216,16 +216,16 @@ const Tasks = () => {
                                                     {task.status}
                                                 </div>
                                                 <div className="profile flex flex-1 justify-end">
-                                                    <img src="./profile.webp" className="w-10 rounded-full" alt="profile.webp" />
+                                                    <img src="./profile.webp" className="w-6 rounded-full" alt="profile.webp" />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="task-desc mx-2 my-2">
+                                        <div className="task-desc text-sm mx-2 my-2">
                                             {task.description}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="text-center py-5 text-gray-800 font-bold text-lg ml-5">
+                                <div className="text-center py-5 text-gray-800 font-bold text-sm ml-5">
                                     Due Date: {task.due_date?.split("T")[0]}
                                 </div>
                             </div>
