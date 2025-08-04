@@ -310,7 +310,7 @@ const Projects = () => {
                                                         task.project ===
                                                         projectItem.id
                                                 )
-                                                .slice(0,4).map((task) => (
+                                                .map((task) => (
                                                     <div
                                                         key={task.id}
                                                         className={`task border-2 w-full h-full dots-bg rounded-2xl p-1 px-2 ${task.status ===
