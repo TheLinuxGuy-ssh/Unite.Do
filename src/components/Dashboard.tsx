@@ -25,7 +25,7 @@ import { NavLink } from "react-router-dom";
 import AOS from "aos";
 
 type DashboardProps = {
-    session: Session | null;
+    session: Session;
 };
 
 

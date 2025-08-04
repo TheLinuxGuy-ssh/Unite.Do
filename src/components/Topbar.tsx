@@ -33,7 +33,7 @@ const Topbar = ({ session }: TopbarProps) => {
                         <MenuItems
                             anchor="bottom"
                             transition
-                            className="origin-top flex justify-center w-90 h-90 mt-3 items-center transition duration-100 outline-0 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white text-xl rounded-2xl mx-5 my-2 w-50 border-3 border-gray-300"
+                            className="origin-top flex justify-center w-90 h-90 mt-3 items-center transition duration-100 outline-0 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white text-md rounded-2xl mx-5 my-2 w-50 border-3 border-gray-300"
                         >
                             No Notications
                         </MenuItems>
@@ -54,7 +54,7 @@ const Topbar = ({ session }: TopbarProps) => {
                         <MenuItems
                             anchor="bottom"
                             transition
-                            className="origin-top transition duration-100 outline-0 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white text-xl rounded-2xl mx-5 my-2 w-50 border-3 border-gray-300"
+                            className="origin-top transition duration-100 outline-0 ease-out data-closed:scale-95 data-closed:opacity-0 bg-white text-md rounded-2xl mx-5 my-2 w-50 border-3 border-gray-300"
                         >
                             <MenuItem>
                                 <a
