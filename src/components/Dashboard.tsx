@@ -24,12 +24,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import AOS from "aos";
 
-type DashboardProps = {
-    session: Session;
-};
 
-
-const Dashboard: React.FC<DashboardProps> = ({ session }) => {
+const Dashboard = () => {
     const [taskIsOpen, setTaskIsOpen] = useState(false);
     const [tagIsOpen, setTagIsOpen] = useState(false);
     const [projectIsOpen, setProjectIsOpen] = useState(false);
