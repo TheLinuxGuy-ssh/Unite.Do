@@ -29,7 +29,7 @@ type DashboardProps = {
 };
 
 
-const Dashboard = ( {session} : DashboardProps ) => {
+const Dashboard: React.FC<DashboardProps> = ({ session }) => {
     const [taskIsOpen, setTaskIsOpen] = useState(false);
     const [tagIsOpen, setTagIsOpen] = useState(false);
     const [projectIsOpen, setProjectIsOpen] = useState(false);
