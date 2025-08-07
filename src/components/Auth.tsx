@@ -71,7 +71,7 @@ export default function Auth() {
                     >
                         <div className="text-center">
                             <span className="text-white font-semibold text-lg text-center">
-                                Test Credentials
+                                Demo Credentials, Or Sign Up!
                             </span>
                             <div className="creds my-3 text-white">
                                 <b>Email:</b> microsoft@taskwhirl.com<br />
@@ -151,6 +151,21 @@ export default function Auth() {
                                     : "Sign Up"}
                         </button>
                     </form>
+                    <p className="mt-6 text-center text-sm text-gray-400">
+                        {isSignIn
+                            ? "Don't have an account? "
+                            : "Already have an account? "}
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setIsSignIn(!isSignIn);
+                                setError(null);
+                            }}
+                            className="font-semibold text-yellow-400 hover:text-yellow-300 focus:outline-none"
+                        >
+                            {isSignIn ? "Sign up" : "Sign in"}
+                        </button>
+                    </p>
 
                 </div>
             </div>
