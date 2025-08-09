@@ -154,7 +154,7 @@ const Tasks = () => {
                                 <div className="flex flex-1 pt-2 items-center">
                                     <div className="para text-md mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
                                         <div className="flex font-semibold p-4 items-center text-md ">
-                                            <span className="ml-2 mr-5">
+                                            <span className="mr-5">
 
                                             </span>
                                             {task.title}
@@ -171,7 +171,7 @@ const Tasks = () => {
                                                     {task.status}
                                                 </div>
                                                 <div className="profile flex flex-1 justify-end">
-                                                    <img src="./profile.webp" className="w-6 rounded-full" alt="profile.webp" />
+                                                    <img src="/profile-pic.webp" className="w-6 rounded-full" alt="profile.webp" />
                                                 </div>
                                             </div>
                                         </div>
@@ -199,7 +199,7 @@ const Tasks = () => {
                                 <div className="flex flex-1 pt-2 items-center">
                                     <div className="para text-md mx-2 my-2 h-full bg-gray-100 rounded-4xl shadow shadow-sm bg-yellow-1  py-3 px-4 border-2 border-gray-300 w-full h-full">
                                         <div className="flex font-semibold p-4 items-center text-md ">
-                                            <span className="ml-2 mr-5">
+                                            <span className=" mr-5">
                                                 <i className="fa-solid fa-list" />
                                             </span>
                                             {task.title}
@@ -216,7 +216,7 @@ const Tasks = () => {
                                                     {task.status}
                                                 </div>
                                                 <div className="profile flex flex-1 justify-end">
-                                                    <img src="./profile.webp" className="w-6 rounded-full" alt="profile.webp" />
+                                                    <img src="/profile-pic.webp" className="w-6 rounded-full" alt="profile.webp" />
                                                 </div>
                                             </div>
                                         </div>

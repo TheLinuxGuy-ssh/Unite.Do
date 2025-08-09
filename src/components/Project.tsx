@@ -317,7 +317,7 @@ const Project = () => {
                                                     {task.status}
                                                 </div>
                                                 <div className="profile flex flex-1 justify-end">
-                                                    <img src="./profile.webp" className="w-6 rounded-full" alt="profile.webp" />
+                                                    <img src="/profile-pic.webp" className="w-6 rounded-full" alt="profile.webp" />
                                                 </div>
                                             </div>
                                         </div>
@@ -362,7 +362,7 @@ const Project = () => {
                                                     {task.status}
                                                 </div>
                                                 <div className="profile flex flex-1 justify-end">
-                                                    <img src="./profile.webp" className="w-6 rounded-full" alt="profile.webp" />
+                                                    <img src="/profile-pic.webp" className="w-6 rounded-full" alt="profile.webp" />
                                                 </div>
                                             </div>
                                         </div>
