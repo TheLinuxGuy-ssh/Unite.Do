@@ -3,8 +3,6 @@ import { SpeedInsights } from "@vercel/speed-insights/react"
 import "./App.css";
 import * as comp from "./components";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 import supabase from "../utils/supabase";
 import type { Session } from "@supabase/supabase-js";
 
@@ -35,10 +33,9 @@ const App = () => {
             <div className="flex  h-full">
                 <comp.Sidebar />
                 <Routes>
-                    <Route path="/" Component={comp.Dashboard} />
-                    <Route path="/tasks" Component={comp.Tasks} />
-                    <Route path="/tags" Component={comp.Tags} />
-                    <Route path="/projects" Component={comp.Projects} />
+                    <Route path="/" element={<comp.Dashboard session={session} />} />
+                    <Route path="/tasks" element={<comp.Tasks session={session} />} />
+                    <Route path="/projects" element={<comp.Projects session={session} />} />
                     <Route
                         path="/project/:projectId"
                         Component={comp.Project}

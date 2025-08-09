@@ -4,8 +4,13 @@ import { NavLink } from "react-router-dom";
 import AOS from "aos";
 import { Checkbox } from "@headlessui/react";
 import * as type from "../../utils/interfaces";
+import type { Session } from "@supabase/supabase-js";
 
-const Projects = () => {
+type Data = {
+    session: Session
+}
+
+const Projects = ( {session}: Data ) => {
     const [taskIsOpen, setTaskIsOpen] = useState(false);
     const [tagIsOpen, setTagIsOpen] = useState(false);
     const [projectIsOpen, setProjectIsOpen] = useState(false);
@@ -46,11 +51,13 @@ const Projects = () => {
       tag_id,
       tags (
         id,
-        name
+        name,
+        user_id
       )
     )
   `
             )
+            .eq("user_id", session?.user.id)
             .order("created_at", { ascending: false });
 
         if (error) {
@@ -64,6 +71,7 @@ const Projects = () => {
         const { data, error } = await supabase
             .from("tags")
             .select("*")
+            .eq("user_id", session?.user.id)
             .order("created_at", { ascending: false });
         if (error) {
             console.error(error);
@@ -76,6 +84,7 @@ const Projects = () => {
         const { data, error } = await supabase
             .from("projects")
             .select("*")
+            .eq("user_id", session?.user.id)
             .order("created_at", { ascending: false });
         if (error) {
             console.error(error);
@@ -88,6 +97,7 @@ const Projects = () => {
         const { count, error } = await supabase
             .from("tasks")
             .select("*", { count: "exact" })
+            .eq("user_id", session?.user.id)
             .eq("status", "Ongoing");
         if (error) {
             console.error(error);
@@ -100,6 +110,7 @@ const Projects = () => {
         const { count, error } = await supabase
             .from("tasks")
             .select("*", { count: "exact" })
+            .eq("user_id", session?.user.id)
             .eq("status", "Completed");
         if (error) {
             console.error(error);
@@ -115,7 +126,7 @@ const Projects = () => {
         fetchProjects();
         fetchOngoingItemCount();
         fetchCompletedItemCount();
-    }, []);
+    }, [session]);
 
     const handleChange = (
         e: React.ChangeEvent<
@@ -288,7 +299,10 @@ const Projects = () => {
                 className="do-section-box bg-[#fff!important]"
                 data-aos="fade-right"
             >
-                    <div className="projects p-2 mt-4 grid grid-cols-4 grid-rows-4 gap-4">
+                {projects.filter(
+                        (project) => true
+                                    ).length !== 0 ? (
+                    <div className="projects w-full p-2 mt-4 grid grid-cols-4 grid-rows-4 gap-4">
                         {projects.map((projectItem) => (
                             <NavLink
                                 to={`/project/${projectItem.id}`}
@@ -358,6 +372,14 @@ const Projects = () => {
                             </NavLink>
                         ))}
                     </div>
+                                    ) : (
+                                        <>
+                                        <div className="w-full h-full my-auto text-3xl font-bold text-gray-600 flex items-center justify-center">
+                                            No Projects found
+                                        </div>
+                                        </>
+                                    )
+                                }
             </div>
         </>
     );

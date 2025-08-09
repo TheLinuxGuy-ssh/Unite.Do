@@ -1,3 +1,5 @@
+
+
 export type Tag = {
     id: string;
     name: string;
@@ -12,6 +14,7 @@ export type User = {
 export type Project = {
     id: string;
     name: string;
+    user_id: string;
 };
 
 export type Task = {
