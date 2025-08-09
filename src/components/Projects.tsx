@@ -288,13 +288,12 @@ const Projects = () => {
                 className="do-section-box bg-[#fff!important]"
                 data-aos="fade-right"
             >
-                    <div className="projects p-2 mt-4 grid grid-cols-4 gap-4">
+                    <div className="projects p-2 mt-4 grid grid-cols-4 grid-rows-4 gap-4">
                         {projects.map((projectItem) => (
                             <NavLink
                                 to={`/project/${projectItem.id}`}
                                 key={projectItem.id}
-                                className="card flex flex-col w-full overflow-hidden h-full rounded-4xl  bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300"
-                            >
+                                className="card flex flex-col w-full overflow-hidden h-full rounded-4xl  bg-white-100 shadow shadow-md duration-100 hover:shadow-lg border border-gray-300">
                                 <div className="project-title p-4 pb-0 text-md font-bold mb-4">
                                     <i className="fa-regular fa-folder mr-2"></i>{" "}
                                     {projectItem.name}
