@@ -24,8 +24,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import AOS from "aos";
 
-
-const Dashboard = () => {
+type Data = {
+    session: Session
+}
+const Dashboard = ( {session}: Data ) => {
     const [taskIsOpen, setTaskIsOpen] = useState(false);
     const [tagIsOpen, setTagIsOpen] = useState(false);
     const [projectIsOpen, setProjectIsOpen] = useState(false);
@@ -52,9 +54,11 @@ const Dashboard = () => {
     });
 
     const [tagData, setTagData] = useState<{ name: string }>({ name: "" });
-    const [projectData, setProjectData] = useState<{ name: string }>({
+    const [projectData, setProjectData] = useState<{ name: string, user_id: string }>({
         name: "",
-    });
+        user_id: session?.user.id!
+     });
+
 
     const fetchTasks = async () => {
         const { data, error } = await supabase
@@ -71,6 +75,7 @@ const Dashboard = () => {
         )
       `
             )
+            .eq("user_id", session?.user.id)
             .order("created_at", { ascending: false });
 
         if (error) {
@@ -84,6 +89,7 @@ const Dashboard = () => {
         const { data, error } = await supabase
             .from("tags")
             .select("*")
+            .eq("user_id", session?.user.id)
             .order("created_at", { ascending: false });
         if (error) {
             console.error(error);
@@ -92,22 +98,12 @@ const Dashboard = () => {
         }
     };
 
-    const fetchUsers = async () => {
-        const { data, error } = await supabase
-            .from("profiles")
-            .select("*")
-            .order("created_at", { ascending: false });
-        if (error) {
-            console.error(error);
-        } else {
-            setUsers(data || []);
-        }
-    };
 
     const fetchProjects = async () => {
         const { data, error } = await supabase
             .from("projects")
             .select("*")
+            .eq("user_id", session?.user.id)
             .order("created_at", { ascending: false });
         if (error) {
             console.error(error);
@@ -120,6 +116,7 @@ const Dashboard = () => {
         const { count, error } = await supabase
             .from("tasks")
             .select("*", { count: "exact" })
+            .eq("user_id", session?.user.id)
             .eq("status", "Ongoing");
         if (error) {
             console.error(error);
@@ -132,6 +129,7 @@ const Dashboard = () => {
         const { count, error } = await supabase
             .from("tasks")
             .select("*", { count: "exact" })
+            .eq("user_id", session?.user.id)
             .eq("status", "Completed");
         if (error) {
             console.error(error);
@@ -142,13 +140,13 @@ const Dashboard = () => {
 
     useEffect(() => {
         AOS.init();
-        fetchUsers();
+
         fetchTasks();
         fetchTags();
         fetchProjects();
         fetchOngoingItemCount();
         fetchCompletedItemCount();
-    }, []);
+    }, [session]);
 
     const handleChange = (
         e: React.ChangeEvent<
@@ -169,7 +167,7 @@ const Dashboard = () => {
 
     const handleProjectChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
-        setProjectData({ name: value });
+        setProjectData({ name: value, user_id: session?.user.id! });
     };
 
     const addTag = (tag: type.Tag | null) => {
@@ -206,6 +204,7 @@ const Dashboard = () => {
                     due_date: taskData.due_date,
                     status: taskData.status,
                     project: taskData.project,
+                    user_id: session?.user.id
                 },
             ])
             .select();
@@ -255,7 +254,7 @@ const Dashboard = () => {
 
         const { error } = await supabase
             .from("tags")
-            .insert([{ name: tagData.name }]);
+            .insert([{ name: tagData.name, user_id: session?.user.id }]);
         if (error) {
             console.error(error);
         } else {
@@ -270,12 +269,12 @@ const Dashboard = () => {
 
         const { error } = await supabase
             .from("projects")
-            .insert([{ name: projectData.name }]);
+            .insert([{ name: projectData.name, user_id: session?.user.id }]);
         if (error) {
             console.error(error);
         } else {
             await fetchProjects();
-            setProjectData({ name: "" });
+            setProjectData({ name: "", user_id: "" });
         }
     };
 
@@ -324,6 +323,9 @@ const Dashboard = () => {
                             </button>
                         </div>
                     </div>
+                    {projects.filter(
+                        (project) => true
+                                    ).length !== 0 ? (
                     <div className="projects p-2 mt-4 grid grid-cols-3 gap-4">
                         {projects.map((projectItem) => (
                             <NavLink
@@ -395,6 +397,14 @@ const Dashboard = () => {
                             </NavLink>
                         ))}
                     </div>
+                                    ) : (
+                                        <>
+                                        <div className="w-full h-full text-3xl font-bold text-gray-600 flex items-center justify-center">
+                        No Projects found
+                        </div>
+                                        </>
+                                    )
+                                }
                 </div>
 
                 <div className="flex flex-1 m-2 h-[87vh] flex-col overflow-hidden rounded-4xl">
@@ -535,6 +545,9 @@ const Dashboard = () => {
                                 New Tag <i className="fa fa-plus"></i>
                             </button>
                         </div>
+                        {tags.filter(
+                        (tag) => true
+                                    ).length !== 0 ? (
                         <div className="dashboard-card-content grid grid-cols-2">
                             {tags.map((tag) => (
                                 <div
@@ -553,6 +566,14 @@ const Dashboard = () => {
                                 </div>
                             ))}
                         </div>
+                                    ) : (
+                                        <>
+                                        <div className="w-full h-full text-2xl font-bold text-gray-600 flex items-center justify-center">
+                        No tags found
+                        </div>
+                                        </>
+                                    )
+                                }
                     </div>
                 </div>
             </div>

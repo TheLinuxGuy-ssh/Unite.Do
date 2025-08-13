@@ -9,8 +9,13 @@ import {
 } from "@headlessui/react";
 import * as type from "../../utils/interfaces";
 import supabase from "../../utils/supabase";
+import type { Session } from "@supabase/supabase-js";
 
-const Tasks = () => {
+type Data = {
+    session: Session
+}
+
+const Tasks = ({session}:Data) => {
     const [tasks, setTasks] = useState<type.getTask[]>([]);
     const [openEdit, setOpenEdit] = useState(false);
     const [editTask, setEditTask] = useState<type.getTask | null>(null);
@@ -29,6 +34,7 @@ const Tasks = () => {
         )
         `
             )
+            .eq("user_id", session?.user.id)
             .order("created_at", { ascending: false });
 
         if (error) {
@@ -139,7 +145,11 @@ const Tasks = () => {
                         Manage Your Tasks
                     </span>
                 </div>
-                <div className={`content grid ${openEdit ? "grid-cols-3" : "grid-cols-4"} gap-4 my-6 px-4 bg-white w-full`}>
+                    {tasks.filter(
+                        (task) => true
+                                    ).length !== 0 ? (
+                                        <>
+                                        <div className={`content grid ${openEdit ? "grid-cols-3" : "grid-cols-4"} gap-4 my-6 px-4 bg-white w-full`}>
                     {tasks
                         .filter((task) => task.status === "Ongoing")
                         .map((task) => (
@@ -231,6 +241,14 @@ const Tasks = () => {
                             </div>
                         ))}
                 </div>
+                        </>
+                        ) : 
+                        <>
+                        <div className="w-full h-full text-3xl font-bold text-gray-600 flex items-center justify-center">
+                        No tasks found
+                        </div>
+                        </>}
+
             </div>
 
             <div
